@@ -1,0 +1,300 @@
+Taudio_analysis
+v7
+r0
+t324975276.601041
+cCheck dependencies
+cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+cLd /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis normal x86_64
+cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal ppc c++ com.apple.compilers.gcc.4_2
+cLd /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis normal i386
+cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal ppc c++ com.apple.compilers.gcc.4_2
+cLd /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis normal ppc
+cCreateUniversalBinary /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis normal "x86_64 i386 ppc"
+cGenerateDSYMFile /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis.dSYM /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004A769DAB00000000000000EE
+t1249287595
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/math.h
+c000000004A5C14A000000000000004F1
+t1247548576
+s1265
+
+N/Users/Talent/Dropbox/audio_analysis/STFT.cpp
+c000000004DACF7B70000000000000577
+t1303181239
+s1399
+i"STFT.h"
+i"spuc/generic/spuc.h"
+i"spuc/generic/cplxfft.h"
+i<cmath>
+i<cstring>
+i"math_util.h"
+
+N/Users/Talent/Dropbox/audio_analysis/STFT.h
+c000000004DAC9E260000000000000315
+t1303158310
+s789
+i<cstddef>
+i"spuc/generic/cplxfft.h"
+i"spuc/generic/complex.h"
+
+N/Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis
+t1303282476
+s60632
+
+N/Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis.dSYM
+t1303282476
+s102
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/STFT.o
+t1303182646
+s18572
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis
+t1303282475
+s16412
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis.LinkFileList
+c000000004DACFCC200000000000000F0
+t1303182530
+s240
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/main.o
+t1303282475
+s95308
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/STFT.o
+t1303182647
+s19544
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis
+t1303282476
+s15576
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis.LinkFileList
+c000000004DACFCC200000000000000EE
+t1303182530
+s238
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/main.o
+t1303282476
+s96276
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/STFT.o
+t1303182645
+s20856
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis
+t1303282475
+s16808
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis.LinkFileList
+c000000004DACFCC200000000000000F4
+t1303182530
+s244
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/main.o
+t1303282475
+s98740
+
+N/Users/Talent/Dropbox/audio_analysis/main.cpp
+c000000004DAE8326000000000000071F
+t1303282470
+s1823
+i<iostream>
+i"STFT.h"
+i<ctime>
+i<cstdlib>
+i<fstream>
+i"spuc/generic/complex.h"
+i"spuc/generic/spuc.h"
+i"spuc/generic/cplxfft.h"
+
+N/Users/Talent/Dropbox/audio_analysis/math_util.h
+c000000004DAB72E200000000000004EB
+t1303081698
+s1259
+i<cstdlib>
+
+N/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h
+c00000000432AFA89000000000000269F
+t1126890121
+s9887
+i<cstdlib>
+i<spuc.h>
+i<cmath>
+
+N/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h
+c000000004DAC992900000000000014F7
+t1303157033
+s5367
+i<math.h>
+
+N/Users/Talent/Dropbox/audio_analysis/spuc/generic/spuc.h
+c00000000432AFA89000000000000252A
+t1126890121
+s9514
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies324975274#324975274#0(0"0(0#1#0"4300882208#0"0#
+
+CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+s324875446.442263
+e324875446.808025
+r1
+xCompileC
+xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/STFT.o
+x/Users/Talent/Dropbox/audio_analysis/STFT.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
+o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
+lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875446#324875446#0(408"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void1(22@50"No return statement in function returning non-void324875446#284#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875446#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875446#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875446#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(0#0#45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp4300882208#1447"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -Ispuc -Ispuc/generic -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/i386 -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/STFT.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/STFT.o0#
+
+CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+s324975274.777072
+e324975275.637223
+r1
+xCompileC
+xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/main.o
+x/Users/Talent/Dropbox/audio_analysis/main.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
+o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
+lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/main.cpp324975274#324975275#0(407"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void1(22@50"No return statement in function returning non-void324975275#283#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324975275#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324975270#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324975275#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324975275#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(0#0#45"/Users/Talent/Dropbox/audio_analysis/main.cpp4300882208#1447"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -Ispuc -Ispuc/generic -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/i386 -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/main.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/main.o0#
+
+CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal ppc c++ com.apple.compilers.gcc.4_2
+s324875447.103127
+e324875447.329062
+r1
+xCompileC
+xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/STFT.o
+x/Users/Talent/Dropbox/audio_analysis/STFT.cpp
+xnormal
+xppc
+xc++
+xcom.apple.compilers.gcc.4_2
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
+o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
+lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875447#324875447#0(408"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void1(22@50"No return statement in function returning non-void324875447#284#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875447#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875447#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875447#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(0#0#45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp4300882208#1441"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch ppc -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mtune=G5 -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -Ispuc -Ispuc/generic -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/ppc -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/STFT.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/STFT.o0#
+
+CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal ppc c++ com.apple.compilers.gcc.4_2
+s324975275.581389
+e324975276.458740
+r1
+xCompileC
+xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/main.o
+x/Users/Talent/Dropbox/audio_analysis/main.cpp
+xnormal
+xppc
+xc++
+xcom.apple.compilers.gcc.4_2
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
+o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
+lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/main.cpp324975275#324975276#0(407"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void1(22@50"No return statement in function returning non-void324975276#283#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324975276#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324975270#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324975276#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324975276#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(0#0#45"/Users/Talent/Dropbox/audio_analysis/main.cpp4300882208#1441"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch ppc -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mtune=G5 -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -Ispuc -Ispuc/generic -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/ppc -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/main.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/main.o0#
+
+CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+s324875445.548554
+e324875445.755445
+r1
+xCompileC
+xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/STFT.o
+x/Users/Talent/Dropbox/audio_analysis/STFT.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.gcc.4_2
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
+o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
+lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875445#324875445#0(408"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void1(22@50"No return statement in function returning non-void324875445#284#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875445#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875445#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875445#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(0#0#45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp4300882208#1453"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -Ispuc -Ispuc/generic -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/x86_64 -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/STFT.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/STFT.o0#
+
+CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+s324975274.775627
+e324975275.507351
+r1
+xCompileC
+xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/main.o
+x/Users/Talent/Dropbox/audio_analysis/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.gcc.4_2
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
+o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
+lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/main.cpp324975274#324975275#0(407"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void1(22@50"No return statement in function returning non-void324975275#283#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324975275#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324975270#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324975275#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324975275#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(0#0#45"/Users/Talent/Dropbox/audio_analysis/main.cpp4300882208#1453"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -Ispuc -Ispuc/generic -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/x86_64 -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/main.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/main.o0#
+
+CCreateUniversalBinary /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis normal "x86_64 i386 ppc"
+s324975276.504504
+e324975276.520096
+r1
+xCreateUniversalBinary
+x/Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis
+xnormal
+xx86_64 i386 ppc
+lSLF07#2@75"CreateUniversalBinary build/Release/audio_analysis normal "x86_64 i386 ppc"324975276#324975276#0(0"0(0#0#52"/Users/Talent/Dropbox/audio_analysis/x86_64 i386 ppc4300882208#529"    cd /Users/Talent/Dropbox/audio_analysis    /usr/bin/lipo -create /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis -output /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis0#
+
+CGenerateDSYMFile /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis.dSYM /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis
+s324975276.520218
+e324975276.600993
+r1
+xGenerateDSYMFile
+x/Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis.dSYM
+x/Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis
+lSLF07#2@79"GenerateDSYMFile build/Release/audio_analysis.dSYM build/Release/audio_analysis324975276#324975276#0(0"0(0#0#65"/Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis4300882208#216"    cd /Users/Talent/Dropbox/audio_analysis    /Developer/usr/bin/dsymutil /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis -o /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis.dSYM0#
+
+CLd /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis normal i386
+s324975275.637312
+e324975275.691518
+r1
+xLd
+x/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis
+xnormal
+xi386
+old: warning: in ./spuc/libspuc.a, file is not of required architecture
+lSLF07#2@132"Link /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis324975275#324975275#0(71"ld: warning: in ./spuc/libspuc.a, file is not of required architecture1(22@57"In ./spuc/libspuc.a, file is not of required architecture324975275#0#71#0(6@0"324975275#0#0#0#0#0"0(0#0#0"4300882208#602"    cd /Users/Talent/Dropbox/audio_analysis    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/g++-4.2 -arch i386 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/Talent/Dropbox/audio_analysis/build/Release -F/Users/Talent/Dropbox/audio_analysis/build/Release -filelist /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis.LinkFileList -mmacosx-version-min=10.6 -L./spuc -lspuc -lm -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis0#
+
+CLd /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis normal ppc
+s324975276.458911
+e324975276.504402
+r1
+xLd
+x/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis
+xnormal
+xppc
+old: warning: in ./spuc/libspuc.a, file is not of required architecture
+lSLF07#2@131"Link /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis324975276#324975276#0(71"ld: warning: in ./spuc/libspuc.a, file is not of required architecture1(22@57"In ./spuc/libspuc.a, file is not of required architecture324975276#0#71#0(6@0"324975276#0#0#0#0#0"0(0#0#0"4300882208#599"    cd /Users/Talent/Dropbox/audio_analysis    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/g++-4.2 -arch ppc -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/Talent/Dropbox/audio_analysis/build/Release -F/Users/Talent/Dropbox/audio_analysis/build/Release -filelist /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis.LinkFileList -mmacosx-version-min=10.6 -L./spuc -lspuc -lm -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis0#
+
+CLd /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis normal x86_64
+s324975275.507444
+e324975275.581133
+r1
+xLd
+x/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis
+xnormal
+xx86_64
+lSLF07#2@134"Link /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis324975275#324975275#0(0"0(0#0#0"4300882208#608"    cd /Users/Talent/Dropbox/audio_analysis    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/g++-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/Talent/Dropbox/audio_analysis/build/Release -F/Users/Talent/Dropbox/audio_analysis/build/Release -filelist /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis.LinkFileList -mmacosx-version-min=10.6 -L./spuc -lspuc -lm -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis0#
+

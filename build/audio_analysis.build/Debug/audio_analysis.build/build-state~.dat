@@ -1,0 +1,178 @@
+Taudio_analysis
+v7
+r0
+t324794033.979089
+cCheck dependencies
+cCompileC build/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+cCompileC build/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004A769DAB00000000000000EE
+t1249287595
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/math.h
+c000000004A5C14A000000000000004F1
+t1247548576
+s1265
+
+N/Users/Talent/Dropbox/audio_analysis/STFT.cpp
+c000000004DABAAB600000000000004F2
+t1303095990
+s1266
+i"STFT.h"
+i"spuc/generic/spuc.h"
+i"spuc/generic/cplxfft.h"
+i<cmath>
+i<cstring>
+i"math_util.h"
+
+N/Users/Talent/Dropbox/audio_analysis/STFT.h
+c000000004DAA63FE00000000000002FE
+t1303012350
+s766
+i<cstddef>
+i"spuc/generic/cplxfft.h"
+i"spuc/generic/complex.h"
+i"spuc/generic/matrix.h"
+
+N/Users/Talent/Dropbox/audio_analysis/build/Debug/audio_analysis
+t2
+s0
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/STFT.o
+t2
+s0
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/audio_analysis.LinkFileList
+c000000004DABBF2D00000000000000F0
+t1303101229
+s240
+
+N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Users/Talent/Dropbox/audio_analysis/main.cpp
+c000000004DABB03B00000000000001E1
+t1303097403
+s481
+i<iostream>
+i"STFT.h"
+i<ctime>
+i<cstdlib>
+i"spuc/generic/complex.h"
+i"spuc/generic/matrix.h"
+
+N/Users/Talent/Dropbox/audio_analysis/math_util.h
+c000000004DAB72E200000000000004EB
+t1303081698
+s1259
+i<cstdlib>
+
+N/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h
+c00000000432AFA89000000000000269F
+t1126890121
+s9887
+i<cstdlib>
+i<spuc.h>
+i<cmath>
+
+N/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h
+c0000000040536A9300000000000014CF
+t1079208595
+s5327
+i<math.h>
+
+N/Users/Talent/Dropbox/audio_analysis/spuc/generic/spuc.h
+c00000000432AFA89000000000000252A
+t1126890121
+s9514
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies324794029#324794029#0(0"0(0#1#0"9007637348679712#0"0#
+
+CCompileC build/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+s324794029.081622
+e324794032.438039
+r0
+xCompileC
+xbuild/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/STFT.o
+x/Users/Talent/Dropbox/audio_analysis/STFT.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.gcc.4_2
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
+o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directory
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:15:33: error: spuc/generic/matrix.h: No such file or directory
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:13,
+o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h: In constructor 'SPUC::cfft<CPLX>::cfft(int, double, double, double, double)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h:105: error: 'PI' was not declared in this scope
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
+o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:375: error: 'PI' was not declared in this scope
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:376: error: 'PI' was not declared in this scope
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:379: error: 'PI' was not declared in this scope
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
+o/Users/Talent/Dropbox/audio_analysis/STFT.h: At global scope:
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected nested-name-specifier before 'namespce'
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: 'namespce' has not been declared
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected `;' before 'SPUC'
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected constructor, destructor, or type conversion before ';' token
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:29: error: 'cmat' does not name a type
+o/Users/Talent/Dropbox/audio_analysis/STFT.cpp:18: error: 'cmat' does not name a type
+lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794029#324794032#0(2474"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directoryIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/STFT.h:15:33: error: spuc/generic/matrix.h: No such file or directoryIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:13,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h: In constructor 'SPUC::cfft<CPLX>::cfft(int, double, double, double, double)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h:105: error: 'PI' was not declared in this scopeIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:375: error: 'PI' was not declared in this scope/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:376: error: 'PI' was not declared in this scope/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:379: error: 'PI' was not declared in this scope/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scopeIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/STFT.h: At global scope:/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected nested-name-specifier before 'namespce'/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: 'namespce' has not been declared/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected `;' before 'SPUC'/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected constructor, destructor, or type conversion before ';' token/Users/Talent/Dropbox/audio_analysis/STFT.h:29: error: 'cmat' does not name a type/Users/Talent/Dropbox/audio_analysis/STFT.cpp:18: error: 'cmat' does not name a type15(4@33"Spuc.h: No such file or directory324794031#142#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794031#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794031#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@96"Spuc.h: No such file or directory in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794031#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#28"*: No such file or directory0(4@48"Spuc/generic/matrix.h: No such file or directory324794032#322#107#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(13@95"Spuc/generic/matrix.h: No such file or directory in /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#15#0#15#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#15#0#15#0#28"*: No such file or directory0(4@35"'PI' was not declared in this scope324794032#710#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#13#0#13#0#0"0(13@98"'PI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h324794032#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h100901395#105#0#105#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h100901395#105#0#105#0#34"'*' was not declared in this scope0(22@50"No return statement in function returning non-void324794032#1102#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794032#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(4@35"'PI' was not declared in this scope324794032#1338#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@98"'PI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794032#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#375#0#375#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#375#0#375#0#34"'*' was not declared in this scope0(4@35"'PI' was not declared in this scope324794032#1446#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@98"'PI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794032#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#376#0#376#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#376#0#376#0#34"'*' was not declared in this scope0(4@35"'PI' was not declared in this scope324794032#1554#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@98"'PI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794032#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#379#0#379#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#379#0#379#0#34"'*' was not declared in this scope0(4@38"'TWOPI' was not declared in this scope324794032#1662#111#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@101"'TWOPI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794032#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#34"'*' was not declared in this scope0(23@16"At global scope:324794032#1845#62#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(13@63"At global scope: in /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#0#0#0#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#0#0#0#0#0"0(4@48"Expected nested-name-specifier before 'namespce'324794032#1907#104#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(13@95"Expected nested-name-specifier before 'namespce' in /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#19"expected * before *0(4@32"'namespce' has not been declared324794032#2011#88#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(13@79"'namespce' has not been declared in /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#25"'*' has not been declared0(4@26"Expected `;' before 'SPUC'324794032#2099#82#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(13@73"Expected `;' before 'SPUC' in /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#19"expected * before *0(4@69"Expected constructor, destructor, or type conversion before ';' token324794032#2181#125#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(13@116"Expected constructor, destructor, or type conversion before ';' token in /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#19"expected * before *0(4@27"'cmat' does not name a type324794032#2306#83#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324794032#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#10#0#10#0#0"0(13@74"'cmat' does not name a type in /Users/Talent/Dropbox/audio_analysis/STFT.h324794032#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#29#0#29#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#29#0#29#0#24"'*' does not name a type0(4@27"'cmat' does not name a type324794032#2389#85#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324788790#18#0#18#0#24"'*' does not name a type0(0#0#45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp4300882208#1455"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG=1 -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Debug -I/Users/Talent/Dropbox/audio_analysis/build/Debug/include -I../../spuc -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/DerivedSources/x86_64 -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/STFT.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/STFT.o1#
+
+CCompileC build/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+s324794029.063384
+e324794033.978955
+r0
+xCompileC
+xbuild/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/main.o
+x/Users/Talent/Dropbox/audio_analysis/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.gcc.4_2
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
+o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directory
+oIn file included from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:15:33: error: spuc/generic/matrix.h: No such file or directory
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:13,
+o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h: In constructor 'SPUC::cfft<CPLX>::cfft(int, double, double, double, double)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h:105: error: 'PI' was not declared in this scope
+oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
+o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:375: error: 'PI' was not declared in this scope
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:376: error: 'PI' was not declared in this scope
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:379: error: 'PI' was not declared in this scope
+o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope
+oIn file included from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
+o/Users/Talent/Dropbox/audio_analysis/STFT.h: At global scope:
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected nested-name-specifier before 'namespce'
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: 'namespce' has not been declared
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected `;' before 'SPUC'
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected constructor, destructor, or type conversion before ';' token
+o/Users/Talent/Dropbox/audio_analysis/STFT.h:29: error: 'cmat' does not name a type
+o/Users/Talent/Dropbox/audio_analysis/main.cpp: In function 'int main(int, char**)':
+o/Users/Talent/Dropbox/audio_analysis/main.cpp:22: error: 'cmat' was not declared in this scope
+o/Users/Talent/Dropbox/audio_analysis/main.cpp:22: error: expected `;' before 'result'
+lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/main.cpp324794029#324794033#0(2649"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directoryIn file included from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/STFT.h:15:33: error: spuc/generic/matrix.h: No such file or directoryIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:13,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h: In constructor 'SPUC::cfft<CPLX>::cfft(int, double, double, double, double)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h:105: error: 'PI' was not declared in this scopeIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:375: error: 'PI' was not declared in this scope/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:376: error: 'PI' was not declared in this scope/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:379: error: 'PI' was not declared in this scope/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scopeIn file included from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/STFT.h: At global scope:/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected nested-name-specifier before 'namespce'/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: 'namespce' has not been declared/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected `;' before 'SPUC'/Users/Talent/Dropbox/audio_analysis/STFT.h:16: error: expected constructor, destructor, or type conversion before ';' token/Users/Talent/Dropbox/audio_analysis/STFT.h:29: error: 'cmat' does not name a type/Users/Talent/Dropbox/audio_analysis/main.cpp: In function 'int main(int, char**)':/Users/Talent/Dropbox/audio_analysis/main.cpp:22: error: 'cmat' was not declared in this scope/Users/Talent/Dropbox/audio_analysis/main.cpp:22: error: expected `;' before 'result'16(4@33"Spuc.h: No such file or directory324794033#141#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@96"Spuc.h: No such file or directory in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794033#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#28"*: No such file or directory0(4@48"Spuc/generic/matrix.h: No such file or directory324794033#320#107#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(13@95"Spuc/generic/matrix.h: No such file or directory in /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#15#0#15#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#15#0#15#0#28"*: No such file or directory0(4@35"'PI' was not declared in this scope324794033#707#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#13#0#13#0#0"0(13@98"'PI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h324794033#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h100901395#105#0#105#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h100901395#105#0#105#0#34"'*' was not declared in this scope0(22@50"No return statement in function returning non-void324794033#1098#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794033#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(4@35"'PI' was not declared in this scope324794033#1334#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@98"'PI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794033#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#375#0#375#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#375#0#375#0#34"'*' was not declared in this scope0(4@35"'PI' was not declared in this scope324794033#1442#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@98"'PI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794033#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#376#0#376#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#376#0#376#0#34"'*' was not declared in this scope0(4@35"'PI' was not declared in this scope324794033#1550#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@98"'PI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794033#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#379#0#379#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#379#0#379#0#34"'*' was not declared in this scope0(4@38"'TWOPI' was not declared in this scope324794033#1658#111#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#14#0#14#0#0"0(13@101"'TWOPI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324794033#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#34"'*' was not declared in this scope0(23@16"At global scope:324794033#1840#62#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(13@63"At global scope: in /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#0#0#0#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#0#0#0#0#0"0(4@48"Expected nested-name-specifier before 'namespce'324794033#1902#104#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(13@95"Expected nested-name-specifier before 'namespce' in /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#19"expected * before *0(4@32"'namespce' has not been declared324794033#2006#88#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(13@79"'namespce' has not been declared in /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#25"'*' has not been declared0(4@26"Expected `;' before 'SPUC'324794033#2094#82#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(13@73"Expected `;' before 'SPUC' in /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#19"expected * before *0(4@69"Expected constructor, destructor, or type conversion before ';' token324794033#2176#125#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(13@116"Expected constructor, destructor, or type conversion before ';' token in /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#16#0#16#0#19"expected * before *0(4@27"'cmat' does not name a type324794033#2301#83#2(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324794033#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#2#0#2#0#0"0(13@74"'cmat' does not name a type in /Users/Talent/Dropbox/audio_analysis/STFT.h324794033#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#29#0#29#0#0"0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324705150#29#0#29#0#24"'*' does not name a type0(4@37"'cmat' was not declared in this scope324794033#2468#95#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#22#0#22#0#34"'*' was not declared in this scope0(4@28"Expected `;' before 'result'324794033#2563#86#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324790203#22#0#22#0#19"expected * before *0(0#0#45"/Users/Talent/Dropbox/audio_analysis/main.cpp3414973617650413056#1455"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG=1 -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Debug -I/Users/Talent/Dropbox/audio_analysis/build/Debug/include -I../../spuc -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/DerivedSources/x86_64 -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/main.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Debug/audio_analysis.build/Objects-normal/x86_64/main.o1#
+
+CLd /Users/Talent/Dropbox/audio_analysis/build/Debug/audio_analysis normal x86_64
+r0
+
