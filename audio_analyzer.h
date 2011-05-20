@@ -117,6 +117,7 @@ private:
   size_t max_itertau;
   size_t max_iter_cw; //max iteration to get compweight
   size_t seglen; //seg length for each seg to do plca, if 0(default), then use the whole data to do plca
+  size_t numseg; //number of segs, lent/seglen, Notice: it is the floor of lent/seglen, so if seglen!=0, the size of ptz should be seglen*numseg*numcomp
   //extracted components for each class, seg is the components for the 
   vector< datablk > extracted_comps;
 

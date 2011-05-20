@@ -7,6 +7,7 @@
 #include <iostream>
 #include "comp_weight.h"
 #include "math_util.h"
+#include <cstring> //for memcpy
 using namespace std;
 
 audio_analyzer::audio_analyzer(size_t nclass)
@@ -123,7 +124,32 @@ void audio_analyzer::plca_on_data()
     delete []pfz;
   if(pz != NULL)
     delete []pz;
-  plca2d(STFT_double,(size_t)lenf, (size_t)lent, numcomp, max_iter_plca, sparse_z, &ptz, &pfz,&pz,max_itertau);
+  if(seglen==0)  //seglen==0, use the all the frames to do plca
+    plca2d(STFT_double,(size_t)lenf, (size_t)lent, numcomp, max_iter_plca, sparse_z, &ptz, &pfz,&pz,max_itertau);
+  else
+    {
+      //TODO: decide what seglen should represent, now it's only considered as number of frames to do plca
+      numseg=(size_t)lent/seglen; //by this, drop the last part, if the last part is shorter than seglen
+      ptz=new double[numseg*seglen*numcomp];//numseg*seglen row, numcomp column
+      pfz=new double[numcomp*numseg*lenf];//numcomp*numseg row, lenf column
+      pz=new double[numcomp*numseg];
+      double* temp_ptz;
+      double* temp_pfz;
+      double* temp_pz;
+      
+      for(size_t i=0;i<numseg;i++)
+	{
+	  plca2d(STFT_double+i*seglen*lenf,(size_t)lenf, seglen, numcomp, max_iter_plca, sparse_z, &temp_ptz, &temp_pfz,&temp_pz,max_itertau);
+	  //copy the temp result
+	  memcpy(ptz+i*seglen*numcomp,temp_ptz,seglen*numcomp*sizeof(double));
+	  memcpy(pfz+i*numcomp*lenf,temp_pfz,lenf*numcomp*sizeof(double));
+	  memcpy(pz+i*numcomp,temp_pz,numcomp*sizeof(double));
+	  delete []temp_ptz;
+	  delete []temp_pfz;
+	  delete []temp_pz;	  
+	}
+      
+    }
 }
 
 size_t audio_analyzer::add_comps()

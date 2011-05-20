@@ -1,4 +1,5 @@
 CC = g++
+EXECEP = extractplca
 EXECTAA = testaa
 EXECTSTFT = teststft
 EXECTPLCA = testplca
@@ -11,6 +12,8 @@ SRCSCOMP = testcompweight.cpp comp_weight.cpp matfile.cpp math_util.h comp_weigh
 CPPFILESCOMP = testcompweight.cpp  comp_weight.cpp matfile.cpp
 SRCSAA = STFT.cpp math_util.h LambertW1.h plca2d.cpp LambertW1.cpp plca2d.h comp_weight.cpp matfile.cpp comp_weight.h matfile.h testaudioanalyzer.cpp STFT.h audio_analyzer.h audio_analyzer.cpp
 CPPFILESAA = STFT.cpp plca2d.cpp LambertW1.cpp comp_weight.cpp matfile.cpp testaudioanalyzer.cpp audio_analyzer.cpp
+SRCSEP = STFT.cpp math_util.h LambertW1.h plca2d.cpp LambertW1.cpp plca2d.h comp_weight.cpp matfile.cpp comp_weight.h matfile.h STFT.h audio_analyzer.h audio_analyzer.cpp
+CPPFILESEP = STFT.cpp plca2d.cpp LambertW1.cpp comp_weight.cpp matfile.cpp audio_analyzer.cpp
 LIBDIR = ./spuc
 LIB = $(LIBDIR)/libspuc.a
 LIBWAVDIR = ./wavproc
@@ -18,6 +21,9 @@ LIBWAV = $(LIBWAVDIR)/libwavproc.a
 LIBFLAG = -lspuc -lm
 LIBFLAGWAV = -lwavproc
 HEADERPATH = -I./spuc -I./spuc/generic
+
+$(EXECEP): $(SRCSEP) $(LIB) $(LIBWAV)
+	  $(CC) -O2 -o $(EXECEP) $(CPPFILESEP) -L$(LIBDIR) $(LIBFLAG) -L$(LIBWAVDIR) $(LIBFLAGWAV) $(HEADERPATH)
 
 $(EXECTAA): $(SRCSAA) $(LIB) $(LIBWAV)
 	  $(CC) -O2 -o $(EXECTAA) $(CPPFILESAA) -L$(LIBDIR) $(LIBFLAG) -L$(LIBWAVDIR) $(LIBFLAGWAV) $(HEADERPATH)
