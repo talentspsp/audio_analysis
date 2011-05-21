@@ -7,6 +7,7 @@
 #ifndef _MATH_UTIL_H
 #define _MATH_UTIL_H
 #include <cstdlib>
+#include <cmath>
 using namespace std;
 
 #define MIN_DOUBLE 1e-250
@@ -87,6 +88,14 @@ inline void avoidzero(double* p, size_t sz)
 {
   for(size_t i=0;i<sz;i++)
     p[i]=(p[i]<MIN_DOUBLE)?MIN_DOUBLE:p[i];
+}
+
+inline double norm2(double* vec, size_t sz)
+{
+  double sum=0;
+  for(size_t i=0;i<sz;i++)
+    sum+=pow(vec[i],2);
+  return sqrt(sum);
 }
 		
 #endif

@@ -28,7 +28,7 @@ audio_analyzer::audio_analyzer(size_t nclass)
   curr_label=-1;
   label_pred=-1;
   max_iter_plca=100;
-  seglen=0;
+  seglen_sec=0;
   numcomp=0;
   sparse_z=0;
   max_itertau=2;
@@ -43,6 +43,9 @@ audio_analyzer::audio_analyzer(size_t nclass)
   ptz=NULL;
   pfz=NULL;
   STFT_double=NULL;
+  STFT_double_gt_thd=NULL;
+  lent_gt_thd=0;
+  class_prob=NULL;
 }
 
 int audio_analyzer::readindata(char* filename, int label)
@@ -109,6 +112,16 @@ void audio_analyzer::stftcpx2double(int option)
       for(t=0;t<lent;t++)
 	for(f=0;f<lenf;f++)
 	  STFT_double[t*lenf+f]=sqrt(pow(STFT_cpx[t*lenf+f].re,2)+pow(STFT_cpx[t*lenf+f].im,2));
+      if(STFT_double_gt_thd!=NULL)
+	delete []STFT_double_gt_thd;
+      STFT_double_gt_thd=new double[lent*lenf];
+      lent_gt_thd=0;
+      for(t=0;t<lent;t++)
+	if(log10(pow(norm2(STFT_double+t*lenf,lenf),2)/lenf)>thd_db)
+	  {
+	    memcpy(STFT_double_gt_thd+lent_gt_thd*lenf,STFT_double+t*lenf,lenf*sizeof(double));
+	    lent_gt_thd++;
+	  }
       break;
     default:
       cerr<<"wrong option for stftcpx2double: "<<option<<endl;
@@ -124,24 +137,27 @@ void audio_analyzer::plca_on_data()
     delete []pfz;
   if(pz != NULL)
     delete []pz;
-  if(seglen==0)  //seglen==0, use the all the frames to do plca
+  if(seglen_sec==0)  //seglen_sec==0, use the all the frames to do plca
     plca2d(STFT_double,(size_t)lenf, (size_t)lent, numcomp, max_iter_plca, sparse_z, &ptz, &pfz,&pz,max_itertau);
   else
     {
-      //TODO: decide what seglen should represent, now it's only considered as number of frames to do plca
-      numseg=(size_t)lent/seglen; //by this, drop the last part, if the last part is shorter than seglen
-      ptz=new double[numseg*seglen*numcomp];//numseg*seglen row, numcomp column
+      seglen_frame=seglen_sec*fz/fftH;
+      numseg=lent_gt_thd/seglen_frame; //by this, drop the last part, if the last part is shorter than seglen_frame
+      numseg=(numseg>0)?numseg:1;
+      size_t temp_l=(lent_gt_thd<seglen_frame)?lent_gt_thd:seglen_frame;
+      ptz=new double[numseg*temp_l*numcomp];//numseg*seglen_frame row, numcomp column
       pfz=new double[numcomp*numseg*lenf];//numcomp*numseg row, lenf column
       pz=new double[numcomp*numseg];
       double* temp_ptz;
       double* temp_pfz;
       double* temp_pz;
       
+      
       for(size_t i=0;i<numseg;i++)
 	{
-	  plca2d(STFT_double+i*seglen*lenf,(size_t)lenf, seglen, numcomp, max_iter_plca, sparse_z, &temp_ptz, &temp_pfz,&temp_pz,max_itertau);
+	  plca2d(STFT_double_gt_thd+i*seglen_frame*lenf,(size_t)lenf, temp_l, numcomp, max_iter_plca, sparse_z, &temp_ptz, &temp_pfz,&temp_pz,max_itertau);
 	  //copy the temp result
-	  memcpy(ptz+i*seglen*numcomp,temp_ptz,seglen*numcomp*sizeof(double));
+	  memcpy(ptz+i*temp_l*numcomp,temp_ptz,temp_l*numcomp*sizeof(double));
 	  memcpy(pfz+i*numcomp*lenf,temp_pfz,lenf*numcomp*sizeof(double));
 	  memcpy(pz+i*numcomp,temp_pz,numcomp*sizeof(double));
 	  delete []temp_ptz;
@@ -198,7 +214,7 @@ bool audio_analyzer::hierarchical_plca(size_t depth, size_t ncomps, double thd_g
   datablk blk;
   for(z=0;z<numclass;z++)
     {
-      nc=0;
+      nc=0; //number of components for one class
       for(i=0;i<class_comps[z].size();i++)
 	nc+=class_comps[z][i].row;
       inputdata=new double[nc*lenf];
@@ -258,7 +274,7 @@ bool audio_analyzer::get_comp_weight()
   switch(opt_get_cw)
     {
     case 1:
-      comp_weight( psfz,numz,numclass, lenf, STFT_double, (size_t)lent, max_iter_cw, &pts, ptzs);
+      comp_weight( psfz,numz,numclass, lenf, STFT_double_gt_thd, lent_gt_thd, max_iter_cw, &pts, ptzs);
       break;
     case 2:
       comp_weight( psfz,numz,numclass, lenf, pfz, (size_t)numcomp, max_iter_cw, &pts, ptzs);
@@ -291,7 +307,7 @@ int audio_analyzer::pred_max_weight()
   switch(opt_get_cw)
     {
     case 1:
-      tmplent=lent;
+      tmplent=lent_gt_thd;
       break;
     case 2:
       tmplent=(size_t)numcomp;
@@ -304,13 +320,14 @@ int audio_analyzer::pred_max_weight()
       return -1;
       break;
     }
-  double* tmppts=new double[numclass];
+  if(class_prob==NULL)
+    class_prob=new double[numclass];
+ 
   size_t t;
-  setzero(tmppts,numclass);
+  setzero(class_prob,numclass);
   for(t=0;t<tmplent;t++)
-    mat_add(tmppts, tmppts, pts, 1, numclass);
-  max(tmppts,numclass,tmplb);
+    mat_add(class_prob, class_prob, pts+t*numclass, 1, numclass);
+  max(class_prob,numclass,tmplb);
   label_pred=tmplb;
-  delete []tmppts;
   return label_pred;
 }

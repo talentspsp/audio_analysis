@@ -12,7 +12,19 @@
 
  */
 #include <cstdlib>
+#include <iostream>
 using namespace std;
+
+template <class T>
+void printmat(T* mat, size_t row, size_t col)
+{
+  for(size_t i=0;i<row;i++)
+    {
+      for(size_t j=0;j<col;j++)
+	cout<<mat[i*col+j]<<"\t";
+      cout<<endl;
+    }
+}
 
 bool mat2asc(const char* filename, size_t row, size_t col,double* data);
 double* asc2mat(const char* filename, size_t* row, size_t* col);

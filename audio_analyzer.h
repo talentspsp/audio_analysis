@@ -50,6 +50,7 @@ public:
   void set_fft_param(int in_fftN, int in_fftW, int in_fftH) {fftN=in_fftN; fftW=in_fftW; fftH=in_fftH;}
   int get_lenf() {return lenf;}
   int get_lent() {return lent;}
+  size_t get_lent_gt_thd() {return lent_gt_thd;}
   int get_curr_label() {return curr_label;}
   void set_curr_label(int lb) {curr_label=lb;}
   int get_label_pred() {return label_pred;}
@@ -70,8 +71,10 @@ public:
   void set_max_itertau(size_t mit) {max_itertau=mit;}
   void set_max_iter_cw(size_t mic) {max_iter_cw=mic;}
   size_t get_max_iter_cw() {return max_iter_cw;}
-  void set_seglen(size_t sl) {seglen=sl;}
-  size_t get_seglen() {return seglen;}
+  void set_seglen_sec(size_t sl) {seglen_sec=sl;}
+  size_t get_seglen_sec() {return seglen_sec;}
+  void set_seglen_frame(size_t sl) {seglen_frame=sl;}
+  size_t get_seglen_frame() {return seglen_frame;}
   vector< datablk >& get_extracted_comps() {return extracted_comps;}
   vector< vector<datablk> >& get_class_comps() {return class_comps;}
   
@@ -94,7 +97,7 @@ public:
   void set_pts(double* p) {pts=p;}
   double** get_ptzs() {return ptzs;}
   void set_ptzs(double** p) {ptzs=p;}
- 
+  double* get_class_prob() {return class_prob;}
   
 private:
   complex<double>* data;
@@ -105,6 +108,7 @@ private:
   int fftH;
   int lenf;
   int lent;
+  size_t lent_gt_thd; //number of frames whose powers are greater than the threshold
   int curr_label;
   int label_pred;
   double sparse_z;
@@ -116,21 +120,24 @@ private:
   size_t max_iter_plca;
   size_t max_itertau;
   size_t max_iter_cw; //max iteration to get compweight
-  size_t seglen; //seg length for each seg to do plca, if 0(default), then use the whole data to do plca
-  size_t numseg; //number of segs, lent/seglen, Notice: it is the floor of lent/seglen, so if seglen!=0, the size of ptz should be seglen*numseg*numcomp
+  size_t seglen_sec; //seg length for each seg to do plca, if 0(default), then use the whole data to do plca
+  size_t seglen_frame; //number of frames of each segment, seglen_frame=seglen_sec*fz/fftH
+  size_t numseg; //number of segs, lent/seglen_frame, Notice: it is the floor of lent/seglen_frame, so if seglen!=0, the size of ptz should be seglen_frame*numseg*numcomp
   //extracted components for each class, seg is the components for the 
   vector< datablk > extracted_comps;
 
-  // the outside vector<..> is for different class, the inside vector<double*> is for the components from this class, and doulbe* is the data for each instant
+  // the outside vector<..> is for different class, the inside vector<double*> is for the components from this class, and double* is the data for each instant
   vector< vector<datablk> > class_comps;
   complex<double>* STFT_cpx;
   double* STFT_double;
+  double* STFT_double_gt_thd; //STFT result in which each column's mean power is greater than the threshold
   double* ptz;
   double* pfz;
   double* pz;
   size_t* numz;
   double* pts;
   double** ptzs;
+  double* class_prob;
   int opt_get_cw;
 };
 
