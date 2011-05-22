@@ -1,3 +1,18 @@
-When compiling, don't forget -Ispuc
+This project implements plca-based sound classification system.
 
-#define PI  3.141592653589793238462643 
+All the core functions use basic data type array for matrix, such like double*, which will be easy to encapsulate into other data structure, or wrap into matlab mex functions.
+
+STFT.cpp/h: short time Fourier Transform.
+plca2d.cpp/h: plca2d algorithm, the output are P(f|z), P(z), Pt(z)
+comp_weight.cpp/h: calculate the weights of different sources in a given distribution
+spuc/ and libspuc.a: library used for FFT
+wavproc/ and libwavproc.a: library used for wav io
+matfile.cpp/h: load and save matrix, in both ascii and binary format
+math_uttil.h: some math functions
+audio_analyzer.cpp/h: class for the whole system
+matlab_files/: some matlab scripts used to compare and analyze data
+
+see the test** files for the usage of the class and functions, and also the usage of the functions are commented in the source files.
+
+The intermediate results, such like results of plca or STFT, can be got with the get_** functions and saved with the functions in matfile.cpp/h.
+
