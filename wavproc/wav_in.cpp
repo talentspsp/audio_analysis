@@ -183,7 +183,7 @@ int WAV_IN::read_current_input(double *left,double *right)
 
 /********************************************\
 \********************************************/
-int WAV_IN::construct(char *file_name,int quiet_flag)
+int WAV_IN::construct(const char *file_name,int quiet_flag)
 {	
 	unsigned int wstat;
 	int wbuff_len;
@@ -324,7 +324,7 @@ int WAV_IN::construct(char *file_name,int quiet_flag)
 
 /********************************************\
 \********************************************/
-WAV_IN::WAV_IN(char *file_name,int quiet_flag)
+WAV_IN::WAV_IN(const char *file_name,int quiet_flag)
 {	
 	construct(file_name,quiet_flag);
 
@@ -334,7 +334,7 @@ WAV_IN::WAV_IN(char *file_name,int quiet_flag)
 
 /********************************************\
 \********************************************/
-WAV_IN::WAV_IN(char *file_name)
+WAV_IN::WAV_IN(const char *file_name)
 {	
 	construct(file_name,1);
 

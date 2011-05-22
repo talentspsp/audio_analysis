@@ -1,287 +1,0 @@
-Taudio_analysis
-v7
-r0
-t324875332.527354
-cCheck dependencies
-cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
-cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
-cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal i386 c++ com.apple.compilers.gcc.4_2
-cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal i386 c++ com.apple.compilers.gcc.4_2
-cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal ppc c++ com.apple.compilers.gcc.4_2
-cCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal ppc c++ com.apple.compilers.gcc.4_2
-
-N/Developer/SDKs/MacOSX10.6.sdk
-c000000004A769DAB00000000000000EE
-t1249287595
-s238
-
-N/Developer/SDKs/MacOSX10.6.sdk/usr/include/math.h
-c000000004A5C14A000000000000004F1
-t1247548576
-s1265
-
-N/Users/Talent/Dropbox/audio_analysis/STFT.cpp
-c000000004DACF7B70000000000000577
-t1303181239
-s1399
-i"STFT.h"
-i"spuc/generic/spuc.h"
-i"spuc/generic/cplxfft.h"
-i<cmath>
-i<cstring>
-i"math_util.h"
-
-N/Users/Talent/Dropbox/audio_analysis/STFT.h
-c000000004DAC9E260000000000000315
-t1303158310
-s789
-i<cstddef>
-i"spuc/generic/cplxfft.h"
-i"spuc/generic/complex.h"
-
-N/Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis.dSYM
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/STFT.o
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis.LinkFileList
-c000000004DACFCC200000000000000F0
-t1303182530
-s240
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/main.o
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/STFT.o
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis.LinkFileList
-c000000004DACFCC200000000000000EE
-t1303182530
-s238
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/main.o
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/STFT.o
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis.LinkFileList
-c000000004DACFCC200000000000000F4
-t1303182530
-s244
-
-N/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/main.o
-t2
-s0
-
-N/Users/Talent/Dropbox/audio_analysis/main.cpp
-c000000004DACFAD90000000000000518
-t1303182041
-s1304
-i<iostream>
-i"STFT.h"
-i<ctime>
-i<cstdlib>
-i<fstream>
-i"spuc/generic/complex.h"
-
-N/Users/Talent/Dropbox/audio_analysis/math_util.h
-c000000004DAB72E200000000000004EB
-t1303081698
-s1259
-i<cstdlib>
-
-N/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h
-c00000000432AFA89000000000000269F
-t1126890121
-s9887
-i<cstdlib>
-i<spuc.h>
-i<cmath>
-
-N/Users/Talent/Dropbox/audio_analysis/spuc/generic/cplxfft.h
-c000000004DAC992900000000000014F7
-t1303157033
-s5367
-i<math.h>
-
-N/Users/Talent/Dropbox/audio_analysis/spuc/generic/spuc.h
-c00000000432AFA89000000000000252A
-t1126890121
-s9514
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies324875330#324875330#0(0"0(0#1#0"4300882208#0"0#
-
-CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal i386 c++ com.apple.compilers.gcc.4_2
-s324875331.411038
-e324875331.558357
-r0
-xCompileC
-xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/STFT.o
-x/Users/Talent/Dropbox/audio_analysis/STFT.cpp
-xnormal
-xi386
-xc++
-xcom.apple.compilers.gcc.4_2
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directory
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope
-lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875331#324875331#0(881"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directoryIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope3(4@33"Spuc.h: No such file or directory324875331#142#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875331#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875331#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@96"Spuc.h: No such file or directory in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875331#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#28"*: No such file or directory0(22@50"No return statement in function returning non-void324875331#534#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875331#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875331#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875331#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(4@38"'TWOPI' was not declared in this scope324875331#770#111#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875331#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875331#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@101"'TWOPI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875331#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#34"'*' was not declared in this scope0(0#0#45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp4300882208#1425"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/i386 -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/STFT.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/STFT.o1#
-
-CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal i386 c++ com.apple.compilers.gcc.4_2
-s324875330.754290
-e324875331.598950
-r0
-xCompileC
-xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/main.o
-x/Users/Talent/Dropbox/audio_analysis/main.cpp
-xnormal
-xi386
-xc++
-xcom.apple.compilers.gcc.4_2
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directory
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope
-lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/main.cpp324875330#324875331#0(879"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directoryIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope3(4@33"Spuc.h: No such file or directory324875331#141#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324875331#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324874841#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875331#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@96"Spuc.h: No such file or directory in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875331#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#28"*: No such file or directory0(22@50"No return statement in function returning non-void324875331#532#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324875331#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324874841#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875331#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875331#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(4@38"'TWOPI' was not declared in this scope324875331#768#111#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324875331#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324874841#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875331#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@101"'TWOPI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875331#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#34"'*' was not declared in this scope0(0#0#45"/Users/Talent/Dropbox/audio_analysis/main.cpp4300882208#1425"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/i386 -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/main.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/main.o1#
-
-CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal ppc c++ com.apple.compilers.gcc.4_2
-s324875331.599046
-e324875332.218204
-r0
-xCompileC
-xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/STFT.o
-x/Users/Talent/Dropbox/audio_analysis/STFT.cpp
-xnormal
-xppc
-xc++
-xcom.apple.compilers.gcc.4_2
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directory
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope
-lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875331#324875332#0(881"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directoryIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope3(4@33"Spuc.h: No such file or directory324875332#142#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875332#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875332#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@96"Spuc.h: No such file or directory in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875332#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#28"*: No such file or directory0(22@50"No return statement in function returning non-void324875332#534#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875332#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875332#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875332#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(4@38"'TWOPI' was not declared in this scope324875332#770#111#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875332#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875332#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@101"'TWOPI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875332#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#34"'*' was not declared in this scope0(0#0#45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp4300882208#1419"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch ppc -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mtune=G5 -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/ppc -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/STFT.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/STFT.o1#
-
-CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal ppc c++ com.apple.compilers.gcc.4_2
-s324875331.558453
-e324875332.527280
-r0
-xCompileC
-xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/main.o
-x/Users/Talent/Dropbox/audio_analysis/main.cpp
-xnormal
-xppc
-xc++
-xcom.apple.compilers.gcc.4_2
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directory
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope
-lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/main.cpp324875331#324875332#0(879"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directoryIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope3(4@33"Spuc.h: No such file or directory324875332#141#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324875332#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324874841#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875332#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@96"Spuc.h: No such file or directory in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875332#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#28"*: No such file or directory0(22@50"No return statement in function returning non-void324875332#532#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324875332#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324874841#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875332#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875332#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(4@38"'TWOPI' was not declared in this scope324875332#768#111#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324875332#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324874841#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875332#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@101"'TWOPI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875332#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#34"'*' was not declared in this scope0(0#0#45"/Users/Talent/Dropbox/audio_analysis/main.cpp4300882208#1419"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch ppc -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mtune=G5 -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/ppc -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/main.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/main.o1#
-
-CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/STFT.o /Users/Talent/Dropbox/audio_analysis/STFT.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
-s324875330.416612
-e324875330.754183
-r0
-xCompileC
-xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/STFT.o
-x/Users/Talent/Dropbox/audio_analysis/STFT.cpp
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.gcc.4_2
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directory
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope
-lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875330#324875330#0(881"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directoryIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/STFT.cpp:10:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope3(4@33"Spuc.h: No such file or directory324875330#142#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875330#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875330#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@96"Spuc.h: No such file or directory in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875330#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#28"*: No such file or directory0(22@50"No return statement in function returning non-void324875330#534#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875330#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875330#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875330#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(4@38"'TWOPI' was not declared in this scope324875330#770#111#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.cpp324875330#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp324874039#10#0#10#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875330#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@101"'TWOPI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875330#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#34"'*' was not declared in this scope0(0#0#45"/Users/Talent/Dropbox/audio_analysis/STFT.cpp4300882208#1431"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/x86_64 -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/STFT.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/STFT.o1#
-
-CCompileC build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/main.o /Users/Talent/Dropbox/audio_analysis/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
-s324875330.415411
-e324875331.410949
-r0
-xCompileC
-xbuild/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/main.o
-x/Users/Talent/Dropbox/audio_analysis/main.cpp
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.gcc.4_2
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directory
-oIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,
-o                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':
-o/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope
-lSLF07#2@53"Compile /Users/Talent/Dropbox/audio_analysis/main.cpp324875330#324875331#0(879"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:24:18: error: spuc.h: No such file or directoryIn file included from /Users/Talent/Dropbox/audio_analysis/STFT.h:14,                 from /Users/Talent/Dropbox/audio_analysis/main.cpp:2:/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In static member function 'static void* SPUC::complex<T>::operator new(size_t)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:43: warning: no return statement in function returning non-void/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h: In function 'double SPUC::arg(SPUC::complex<T1>)':/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h:380: error: 'TWOPI' was not declared in this scope3(4@33"Spuc.h: No such file or directory324875330#141#108#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324875330#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324874841#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875330#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@96"Spuc.h: No such file or directory in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875330#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#24#0#24#0#28"*: No such file or directory0(22@50"No return statement in function returning non-void324875331#532#124#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324875331#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324874841#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875331#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@113"No return statement in function returning non-void in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875331#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#43#0#43#0#50"no return statement in function returning non-void0(4@38"'TWOPI' was not declared in this scope324875331#768#111#3(7@67"In file included from /Users/Talent/Dropbox/audio_analysis/main.cpp324875331#18446744073709551615#0#0(6@45"/Users/Talent/Dropbox/audio_analysis/main.cpp324874841#2#0#2#0#0"0(7@65"In file included from /Users/Talent/Dropbox/audio_analysis/STFT.h324875331#18446744073709551615#0#0(6@43"/Users/Talent/Dropbox/audio_analysis/STFT.h324851110#14#0#14#0#0"0(13@101"'TWOPI' was not declared in this scope in /Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h324875331#18446744073709551615#0#0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#0"0(6@59"/Users/Talent/Dropbox/audio_analysis/spuc/generic/complex.h148582921#380#0#380#0#34"'*' was not declared in this scope0(0#0#45"/Users/Talent/Dropbox/audio_analysis/main.cpp4300882208#1431"    cd /Users/Talent/Dropbox/audio_analysis    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-generated-files.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-own-target-headers.hmap -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-all-target-headers.hmap -iquote /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/audio_analysis-project-headers.hmap -F/Users/Talent/Dropbox/audio_analysis/build/Release -I/Users/Talent/Dropbox/audio_analysis/build/Release/include -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources/x86_64 -I/Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/DerivedSources -c /Users/Talent/Dropbox/audio_analysis/main.cpp -o /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/main.o1#
-
-CCreateUniversalBinary /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis normal "x86_64 i386 ppc"
-r0
-
-CGenerateDSYMFile /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis.dSYM /Users/Talent/Dropbox/audio_analysis/build/Release/audio_analysis
-r0
-
-CLd /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/i386/audio_analysis normal i386
-r0
-
-CLd /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/ppc/audio_analysis normal ppc
-r0
-
-CLd /Users/Talent/Dropbox/audio_analysis/build/audio_analysis.build/Release/audio_analysis.build/Objects-normal/x86_64/audio_analysis normal x86_64
-r0
-

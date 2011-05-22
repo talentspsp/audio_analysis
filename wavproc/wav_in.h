@@ -11,8 +11,8 @@ class WAV_IN
 
 public:
 
-	WAV_IN(char *wav_file_name);	 
-	WAV_IN(char *file_name,int quiet_flag);
+	WAV_IN(const char *wav_file_name);	 
+	WAV_IN(const char *file_name,int quiet_flag);
 
 	~WAV_IN();
 	
@@ -47,7 +47,7 @@ public:
 	
 protected:
 		
-	int construct(char *file_name,int quiet_flag);
+	int construct(const char *file_name,int quiet_flag);
 
 	FILE *fw;
 

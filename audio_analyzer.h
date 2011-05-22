@@ -20,7 +20,7 @@ public:
   audio_analyzer(size_t nclass=1);
   ~audio_analyzer() {}
   //label is the class label, if label is -1, it is used for test. return class label
-  int readindata(char* filename, int label=-1); // if fail, return negative value
+  int readindata(const char* filename, int label=-1); // if fail, return negative value
 
   // plca on the STFT_double, which is from data just read in
   void plca_on_data();
@@ -62,8 +62,9 @@ public:
   double get_thd_pz() {return thd_pz;}
   void set_numclass(size_t ncs) {numclass=ncs;}
   size_t get_numclass() {return numclass;}
-  void set_numcomp(size_t ncp) {numcomp=ncp;}
-  size_t get_numcomp() {return numcomp;}
+  void set_numcomp_per_seg(size_t ncp) {numcomp_per_seg=ncp;}
+  size_t get_numcomp_per_seg() {return numcomp_per_seg;}
+  size_t get_numcomp_all() {return numcomp_all;}
   size_t get_ncomp_gt_thd() {return ncomp_gt_thd;}
   void set_max_iter_plca(size_t mip) {max_iter_plca=mip;}
   size_t get_max_iter_plca() {return max_iter_plca;}
@@ -75,6 +76,7 @@ public:
   size_t get_seglen_sec() {return seglen_sec;}
   void set_seglen_frame(size_t sl) {seglen_frame=sl;}
   size_t get_seglen_frame() {return seglen_frame;}
+  size_t get_numseg() {return numseg;}
   vector< datablk >& get_extracted_comps() {return extracted_comps;}
   vector< vector<datablk> >& get_class_comps() {return class_comps;}
   
@@ -115,14 +117,15 @@ private:
   double thd_db; //threshold on db
   double thd_pz; //threshold on pz
   size_t numclass;
-  size_t numcomp; //number of components used in plca
+  size_t numcomp_per_seg; //number of components used in plca
+  size_t numcomp_all; //number of components from all the segments
   size_t ncomp_gt_thd; //number of components with possibility greater than threshold
   size_t max_iter_plca;
   size_t max_itertau;
   size_t max_iter_cw; //max iteration to get compweight
   size_t seglen_sec; //seg length for each seg to do plca, if 0(default), then use the whole data to do plca
   size_t seglen_frame; //number of frames of each segment, seglen_frame=seglen_sec*fz/fftH
-  size_t numseg; //number of segs, lent/seglen_frame, Notice: it is the floor of lent/seglen_frame, so if seglen!=0, the size of ptz should be seglen_frame*numseg*numcomp
+  size_t numseg; //number of segs, lent/seglen_frame, Notice: it is the floor of lent/seglen_frame, so if seglen!=0, the size of ptz should be seglen_frame*numseg*numcomp_per_seg
   //extracted components for each class, seg is the components for the 
   vector< datablk > extracted_comps;
 

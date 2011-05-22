@@ -21,7 +21,7 @@ int main (int argc, char * const argv[])
 	printf("ready for wav io...\n");
 
 	// setup files names for in/out
-	char *fname_in = (char *) "03a0Wb.wav";
+	char *fname_in = (char *) "03a02Wb.wav";
 	char *fname_out = (char *) "out.wav";
 
 	// allocate input wav object	

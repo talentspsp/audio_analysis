@@ -29,7 +29,7 @@ audio_analyzer::audio_analyzer(size_t nclass)
   label_pred=-1;
   max_iter_plca=100;
   seglen_sec=0;
-  numcomp=0;
+  numcomp_per_seg=0;
   sparse_z=0;
   max_itertau=2;
   pz=NULL;
@@ -46,9 +46,10 @@ audio_analyzer::audio_analyzer(size_t nclass)
   STFT_double_gt_thd=NULL;
   lent_gt_thd=0;
   class_prob=NULL;
+  numcomp_all=0;
 }
 
-int audio_analyzer::readindata(char* filename, int label)
+int audio_analyzer::readindata(const char* filename, int label)
 {
   curr_label=label;
   try
@@ -138,16 +139,20 @@ void audio_analyzer::plca_on_data()
   if(pz != NULL)
     delete []pz;
   if(seglen_sec==0)  //seglen_sec==0, use the all the frames to do plca
-    plca2d(STFT_double,(size_t)lenf, (size_t)lent, numcomp, max_iter_plca, sparse_z, &ptz, &pfz,&pz,max_itertau);
+    {
+      plca2d(STFT_double,(size_t)lenf, (size_t)lent, numcomp_per_seg, max_iter_plca, sparse_z, &ptz, &pfz,&pz,max_itertau);
+      numcomp_all=numcomp_per_seg;
+    }
   else
     {
       seglen_frame=seglen_sec*fz/fftH;
       numseg=lent_gt_thd/seglen_frame; //by this, drop the last part, if the last part is shorter than seglen_frame
       numseg=(numseg>0)?numseg:1;
+      numcomp_all=numcomp_per_seg*numseg;
       size_t temp_l=(lent_gt_thd<seglen_frame)?lent_gt_thd:seglen_frame;
-      ptz=new double[numseg*temp_l*numcomp];//numseg*seglen_frame row, numcomp column
-      pfz=new double[numcomp*numseg*lenf];//numcomp*numseg row, lenf column
-      pz=new double[numcomp*numseg];
+      ptz=new double[numseg*temp_l*numcomp_per_seg];//numseg*seglen_frame row, numcomp_per_seg column
+      pfz=new double[numcomp_per_seg*numseg*lenf];//numcomp_per_seg*numseg row, lenf column
+      pz=new double[numcomp_per_seg*numseg];//numseg row, numcomp_per_seg column
       double* temp_ptz;
       double* temp_pfz;
       double* temp_pz;
@@ -155,11 +160,11 @@ void audio_analyzer::plca_on_data()
       
       for(size_t i=0;i<numseg;i++)
 	{
-	  plca2d(STFT_double_gt_thd+i*seglen_frame*lenf,(size_t)lenf, temp_l, numcomp, max_iter_plca, sparse_z, &temp_ptz, &temp_pfz,&temp_pz,max_itertau);
+	  plca2d(STFT_double_gt_thd+i*seglen_frame*lenf,(size_t)lenf, temp_l, numcomp_per_seg, max_iter_plca, sparse_z, &temp_ptz, &temp_pfz,&temp_pz,max_itertau);
 	  //copy the temp result
-	  memcpy(ptz+i*temp_l*numcomp,temp_ptz,temp_l*numcomp*sizeof(double));
-	  memcpy(pfz+i*numcomp*lenf,temp_pfz,lenf*numcomp*sizeof(double));
-	  memcpy(pz+i*numcomp,temp_pz,numcomp*sizeof(double));
+	  memcpy(ptz+i*temp_l*numcomp_per_seg,temp_ptz,temp_l*numcomp_per_seg*sizeof(double));
+	  memcpy(pfz+i*numcomp_per_seg*lenf,temp_pfz,lenf*numcomp_per_seg*sizeof(double));
+	  memcpy(pz+i*numcomp_per_seg,temp_pz,numcomp_per_seg*sizeof(double));
 	  delete []temp_ptz;
 	  delete []temp_pfz;
 	  delete []temp_pz;	  
@@ -177,7 +182,7 @@ size_t audio_analyzer::add_comps()
     }
   ncomp_gt_thd=0;
   size_t z,f;
-  for(z=0;z<numcomp;z++)
+  for(z=0;z<numcomp_all;z++)
     if(pz[z]>thd_pz)
       ncomp_gt_thd++;
   datablk blk;
@@ -185,7 +190,7 @@ size_t audio_analyzer::add_comps()
   blk.col=lenf;
   blk.data=new double[ncomp_gt_thd*lenf];
   size_t cnt=0;
-  for(z=0;z<numcomp;z++)
+  for(z=0;z<numcomp_all;z++)
     if(pz[z]>thd_pz)
       {
 	for(f=0;f<lenf;f++)
@@ -277,12 +282,12 @@ bool audio_analyzer::get_comp_weight()
       comp_weight( psfz,numz,numclass, lenf, STFT_double_gt_thd, lent_gt_thd, max_iter_cw, &pts, ptzs);
       break;
     case 2:
-      comp_weight( psfz,numz,numclass, lenf, pfz, (size_t)numcomp, max_iter_cw, &pts, ptzs);
+      comp_weight( psfz,numz,numclass, lenf, pfz, numcomp_all, max_iter_cw, &pts, ptzs);
       break;
     case 3:
       v=new double[ncomp_gt_thd*lenf];
       cnt=0;
-      for(z=0;z<numcomp;z++)
+      for(z=0;z<numcomp_all;z++)
 	if(pz[z]>thd_pz)
 	  for(f=0;f<lenf;f++)
 	    {
@@ -310,7 +315,7 @@ int audio_analyzer::pred_max_weight()
       tmplent=lent_gt_thd;
       break;
     case 2:
-      tmplent=(size_t)numcomp;
+      tmplent=numcomp_all;
       break;
     case 3:
       tmplent=ncomp_gt_thd;
