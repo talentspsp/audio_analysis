@@ -38,7 +38,7 @@ true_label=cell(1,testtimes);
 traindata=cell(1,ngenre);
 maxiter=100;
 
-for i=1:testtimes
+for i=1%:testtimes   DEGUG: save data
     tlabel=[];
     testdata=[];
     train_ind=cell(1,ngenre);
@@ -56,6 +56,9 @@ for i=1:testtimes
     disp('getting genre components...');
     gcomps=extract_genre_components(traindata);
     assign_prob{i}=zeros(length(tlabel),ngenre);
+    
+    %DEBUG
+    %save('testdata','allcomponents','train_ind','test_ind','traindata','testdata','tlabel','gcomps');
     
     if model_opt==1
         for k=1:length(testdata)
@@ -75,49 +78,87 @@ for i=1:testtimes
         svm_test_label=[];
         svm_train_data=[];
         svm_test_data=[];
+        
+        
+        %DEBUG:
+        alltrainpts=cell(1,ngenre);
+        alltrainptzs=cell(1,ngenre);
+        alltestpts=cell(1,ngenre);
+        alltestptzs=cell(1,ngenre);
         for j=1:ngenre
             svm_train_label=[svm_train_label;ones(sum(train_ind{j}),1)*j];
             svm_test_label=[svm_test_label;ones(sum(test_ind{j}),1)*j];
+            alltrainpts{j}=cell(1,sum(train_ind{j}));
+            alltrainptzs{j}=cell(1,sum(train_ind{j}));
+            alltestpts{j}=cell(1,sum(test_ind{j}));
+            alltestptzs{j}=cell(1,sum(test_ind{j}));
+            
             t_ind=find(train_ind{j});
             for k=1:length(t_ind)
                 t_data=allcomponents{j}{t_ind(k)};
                 [pts ptzs]=components_separation(gcomps,t_data,100);
-                t_ft=[]; % temp feature
-                for m=1:size(pts,2) % m for time
-                    t_ft_sub=[];
-                    for n=1:size(pts,1) % n for sources
-                        tst=ptzs{n}(:,m)*pts(n,m);
-                        t_ft_sub=[t_ft_sub;tst];
-                    end
-                    t_ft=[t_ft t_ft_sub];
-                end
-                t_ft=sum(t_ft,2);
-                svm_train_data=[svm_train_data;t_ft'];
+                alltrainpts{j}{k}=pts;
+                alltrainptzs{j}{k}=ptzs;
             end
             
             t_ind=find(test_ind{j});
             for k=1:length(t_ind)
                 t_data=allcomponents{j}{t_ind(k)};
                 [pts ptzs]=components_separation(gcomps,t_data,100);
-                t_ft=[]; % temp feature
-                for m=1:size(pts,2) % m for time
-                    t_ft_sub=[];
-                    for n=1:size(pts,1) % n for sources
-                        tst=ptzs{n}(:,m)*pts(n,m);
-                        t_ft_sub=[t_ft_sub;tst];
-                    end
-                    t_ft=[t_ft t_ft_sub];
-                end
-                t_ft=sum(t_ft,2);
-                svm_test_data=[svm_test_data;t_ft'];
+                alltestpts{j}{k}=pts;
+                alltestptzs{j}{k}=ptzs;
             end
         end
-        option='-c 0.5 -t 2 -b 1';
-        disp('train svm...');
-        model = svmtrain(svm_train_label, svm_train_data, option);
-        [predict_label, a, dec_values] = svmpredict(svm_test_label, svm_test_data, model,'-b 1');
-        accuracy(i)=a(1);
-        confusion_mat_ratio(:,:,i)=create_confusion_mat(svm_test_label,predict_label);
+       save('testdata_mfcc.mat','allcomponents','train_ind','test_ind','traindata','testdata','tlabel','gcomps','alltrainpts','alltrainptzs','alltestpts','alltestptzs','svm_train_label','svm_test_label');
+        %end DEBUG
+        
+        
+        
+        
+        
+%         for j=1:ngenre
+%             svm_train_label=[svm_train_label;ones(sum(train_ind{j}),1)*j];
+%             svm_test_label=[svm_test_label;ones(sum(test_ind{j}),1)*j];
+%             t_ind=find(train_ind{j});
+%             for k=1:length(t_ind)
+%                 t_data=allcomponents{j}{t_ind(k)};
+%                 [pts ptzs]=components_separation(gcomps,t_data,100);
+%                 t_ft=[]; % temp feature
+%                 for m=1:size(pts,2) % m for time
+%                     t_ft_sub=[];
+%                     for n=1:size(pts,1) % n for sources
+%                         tst=ptzs{n}(:,m)*pts(n,m);
+%                         t_ft_sub=[t_ft_sub;tst];
+%                     end
+%                     t_ft=[t_ft t_ft_sub];
+%                 end
+%                 t_ft=sum(t_ft,2);
+%                 svm_train_data=[svm_train_data;t_ft'];
+%             end
+%             
+%             t_ind=find(test_ind{j});
+%             for k=1:length(t_ind)
+%                 t_data=allcomponents{j}{t_ind(k)};
+%                 [pts ptzs]=components_separation(gcomps,t_data,100);
+%                 t_ft=[]; % temp feature
+%                 for m=1:size(pts,2) % m for time
+%                     t_ft_sub=[];
+%                     for n=1:size(pts,1) % n for sources
+%                         tst=ptzs{n}(:,m)*pts(n,m);
+%                         t_ft_sub=[t_ft_sub;tst];
+%                     end
+%                     t_ft=[t_ft t_ft_sub];
+%                 end
+%                 t_ft=sum(t_ft,2);
+%                 svm_test_data=[svm_test_data;t_ft'];
+%             end
+%         end
+%         option='-c 0.5 -t 2 -b 1';
+%         disp('train svm...');
+%         model = svmtrain(svm_train_label, svm_train_data, option);
+%         [predict_label, a, dec_values] = svmpredict(svm_test_label, svm_test_data, model,'-b 1');
+%         accuracy(i)=a(1);
+%         confusion_mat_ratio(:,:,i)=create_confusion_mat(svm_test_label,predict_label);
         
         
     end

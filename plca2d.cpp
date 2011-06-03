@@ -1,10 +1,12 @@
 #include "plca2d.h"
 #include <iostream>
 #include <cstdlib>
+#include <cstring>
 #include <cmath>
 #include <ctime>
 #include "math_util.h"
 #include "LambertW1.h"
+#include "LambertWnew.h"
 using namespace std;
 #define TOLERANT -600  //this the minimal base e expotional number for Lambert function, below this number should use lambert_arg_outof_range
 #define MINEX -1000
@@ -70,6 +72,8 @@ bool plca2d(double* data, size_t lenf, size_t lent, size_t K, size_t max_iter, d
       for(t=0;t<lent;t++)
 	{
 	  setzero(tmp_lenf,lenf);
+	  //memset(tmp_lenf,0,lenf*sizeof(double));
+
 	  for(z=0;z<K;z++)
 	    {
 	      scalar_mult_mat(ptzf+t*lenf*K+z*lenf,pfz+z*lenf,1,lenf,ptz[t*K+z]);
@@ -97,6 +101,8 @@ bool plca2d(double* data, size_t lenf, size_t lent, size_t K, size_t max_iter, d
 #endif
       //sum_t Pt(z|f)*Lft
       setzero(pfz,K*lenf);
+      // memset(pfz,0,K*lenf*sizeof(double));
+
       for(t=0;t<lent;t++)
 	{
 	  for(z=0;z<K;z++)
@@ -115,6 +121,8 @@ bool plca2d(double* data, size_t lenf, size_t lent, size_t K, size_t max_iter, d
 	}
       //omega_z=sum_f Lft*Pt(z|f), note: ptzf above has been chaged to ptzf*Lft
       setzero(oz,lent*K);
+      //memset(oz,0,lent*K*sizeof(double));
+
       for(t=0;t<lent;t++)
 	for(z=0;z<K;z++)
 	  for(f=0;f<lenf;f++)
@@ -174,10 +182,13 @@ bool plca2d(double* data, size_t lenf, size_t lent, size_t K, size_t max_iter, d
 	      //Pt(z)=-omega_z/sz  /  W(-omega_z*exp(1+taut/sz)/sz)
 	      for(t=0;t<lent;t++)
 		{
-		  tt=min(tautz+t*K,K);
 		  sum_z=0;
 		  for(z=0;z<K;z++)
 		    {
+		      if(itertau==0)
+			tt=min(tautz+t*K,K);
+		      else
+			tt=tautz[t*K+z];
 		      tv1=-oz[t*K+z]/sz;
 		      wp=tv1*exp(1+tt/sz);
 		      en=log(-tv1)+1+tt/sz;
@@ -189,6 +200,7 @@ bool plca2d(double* data, size_t lenf, size_t lent, size_t K, size_t max_iter, d
 		      if(en>TOLERANT)
 			{
 			  ptz[t*K+z]=tv1/LambertW1(wp); //TODO: add protection to LamberW1, if fail, it will return 1
+			  //ptz[t*K+z]=tv1/lambert_Wm1(wp);
 #ifdef TEST
 			  tv2=LambertW1(wp);
 #endif
@@ -221,11 +233,15 @@ bool plca2d(double* data, size_t lenf, size_t lent, size_t K, size_t max_iter, d
     }
   //compute P(t)=sum_f P(f,t)
   setzero(pt,lent);
+  //memset(pt,0,lent*sizeof(double));
+
   for(t=0;t<lent;t++)
     for(f=0;f<lenf;f++)
       pt[t]+=data[t*lenf+f];
   //P(z)=sum_t P(z|t)*P(t)
   setzero(pz,K);
+  //memset(pt,0,K*sizeof(double));
+
   for(t=0;t<lent;t++)
     {
       scalar_mult_mat(tmp_K,ptz+t*K,1,K,pt[t]);

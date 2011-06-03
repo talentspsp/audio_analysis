@@ -1,13 +1,13 @@
 clear all;
 %read input data
-fin=fopen('../build/release/data','r');
+fin=fopen('../testdata/stftin','r');
 %supose each line of the data is a complex number,a+ib
 indata=textscan(fin,'%f');
 fclose(fin);
 
 frame=[];
 lent=0;
-fout=fopen('../build/release/output','r');
+fout=fopen('../testdata/stftout','r');
 line=fgetl(fout);
 while(ischar(line))
     lent=lent+1;

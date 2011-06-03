@@ -140,8 +140,9 @@ void audio_analyzer::plca_on_data()
     delete []pz;
   if(seglen_sec==0)  //seglen_sec==0, use the all the frames to do plca
     {
-      plca2d(STFT_double,(size_t)lenf, (size_t)lent, numcomp_per_seg, max_iter_plca, sparse_z, &ptz, &pfz,&pz,max_itertau);
+      plca2d(STFT_double_gt_thd,(size_t)lenf,lent_gt_thd, numcomp_per_seg, max_iter_plca, sparse_z, &ptz, &pfz,&pz,max_itertau);
       numcomp_all=numcomp_per_seg;
+      numseg=1;
     }
   else
     {

@@ -1,9 +1,9 @@
-function fst=extractcomp(startind,endind)
-toolpath='/Users/Talent/Documents/courses/sound/sourceseparation';  % path to plca
-addpath(toolpath);
+function fst=extractcomp(filename)
+%toolpath='/net/grad/kong/machine_learning/sourceseparation';  % path to plca
+%addpath(toolpath);
 datapath='/Users/Talent/Dropbox/cs134/project/dataset/wav';  % path to the data
 allwav=dir([datapath filesep '*.wav']);
-savepath='/Users/Talent/Dropbox/audio_analysis/matlab_files/testdir';  % path to save the result data
+savepath='/Users/Talent/Dropbox/audio_analysis/matlab_files/comps';  % path to save the result data
 
 % parameters
 fftN=1024;
@@ -12,17 +12,18 @@ fftH=512;
 ncomp=10;
 sz=0.2;
 
-% TODO: separate into different tasks
+fid=fopen(filename,'r');
+allsong=textscan(fid,'%s');
 
-
-for i=startind:endind
-    wavfile=allwav(i).name;
+for i=1:length(allsong{1})
+    wavfile=allsong{1}{i};
     [s f]= wavread([datapath filesep wavfile]);
     if(size(s,2)==2)
         s=s(:,1)+s(:,2);
     end
     st=stft1(s',fftN,fftW,fftH);
     st=abs(st);
+    st(st==0)=0.000001;
     [w h z]=plca2d( st, ncomp, 100, sz, 0, 0, [], [], [], 0);
     
     % save the result

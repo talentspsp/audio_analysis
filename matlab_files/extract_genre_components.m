@@ -21,7 +21,7 @@ end
 
 ngenre=length(data);
 gcomps=cell(1,ngenre);
-thd=0.5/initial_nump; %threshold to accept the w
+thd=2/initial_nump; %threshold to accept the w
 for i=1:ngenre
     [w,h,z]=plca2d( data{i}, initial_nump, 100, sz, 0, 0, [], [], [], 0);
     if(sz==0)

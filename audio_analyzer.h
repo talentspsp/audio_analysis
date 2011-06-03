@@ -45,7 +45,7 @@ public:
   //this group of functions used to get and set parameters
   complex<double>* get_data() {return data;}
   void set_data(complex<double>* in_data) {data=in_data;}
-  
+  int get_datasize() {return datasize;}
   double get_fz() {return fz;}
   void set_fft_param(int in_fftN, int in_fftW, int in_fftH) {fftN=in_fftN; fftW=in_fftW; fftH=in_fftH;}
   int get_lenf() {return lenf;}

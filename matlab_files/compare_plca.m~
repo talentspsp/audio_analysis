@@ -33,25 +33,55 @@ while(ischar(line))
 end
 fclose(pfzin);
 
-[w,h,z] = plca2D( frame, 5, 100, 0.2);
+pzin=fopen('../plcapz.txt');
+line=fgetl(pzin);
+temp=textscan(line,'%f');
+c_pz_read=temp{1};
+fclose(pzin);
 
+
+K=10;
+tic
+[w,h,z] = plca2d( frame, K, 1000, 0.2,0,0,[],[],[],0);
+toc
 mat_rct=w*diag(z)*h;
 
 figure;
-imagesc(frame);
+imagesc(log10(frame));
 colorbar;
 title('original');
 figure;
-imagesc(mat_rct);
+imagesc(log10(mat_rct));
 colorbar;
 title('reconstruction from matlab');
 figure;
 pf_t=c_pfz*c_ptz;
 pt=sum(frame);
-pt=ones(lenf,1)*pt;
-c_rct=pf_t.*pt;
-imagesc(c_rct);
+pt_mat1=ones(lenf,1)*pt;
+c_rct=pf_t.*pt_mat1;
+imagesc(log10(c_rct));
 colorbar;
 title('reconstrunction from C');
 
+% pt_mat2=ones(K,1)*pt;
+% pz=c_ptz.*pt_mat2;
+% pz=sum(pz,2);
+% figure;
+% stem(pz);
+% title('c pz');
 
+
+figure;
+c_pz_read=c_pz_read/sum(c_pz_read);
+stem(sort(c_pz_read,'descend'));
+title('c pz sorted')
+figure;
+stem(c_pz_read);
+title('c pz read')
+
+figure
+stem(z);
+title('mat pz')
+
+err_mat=sum(sum(abs(mat_rct-frame)))
+err_c=sum(sum(abs(c_rct-frame)))

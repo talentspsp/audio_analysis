@@ -51,7 +51,7 @@ double LambertW1(const double z) {
     if (fabs(t)<eps*(1.0+fabs(w))) return w; /* rel-abs error */
   }
   /* should never get here */
-  fprintf(stderr,"LambertW1: No convergence at z=%g, final value is %g.\n",z,w); 
+  // fprintf(stderr,"LambertW1: No convergence at z=%g, final value is %g.\n",z,w); 
   return w;
 }
 
