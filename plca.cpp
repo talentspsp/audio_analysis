@@ -1,0 +1,255 @@
+#include "plca.h"
+#include "fastmath.h"
+#include "LambertWs.h"
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+FMmatrix<double> lambert_compute_with_offset(const FMmatrix<double>& omeg, double z, double lam_offset);
+
+void plca(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in_sz, const FMmatrix<double>& in_sw, const FMmatrix<double>& in_sh, const FMmatrix<double>& in_z, const FMmatrix<double>& in_w, const FMmatrix<double>& in_h, const FMmatrix<bool>& lw, const FMmatrix<bool>& lh, FMmatrix<double>& out_w,  FMmatrix<double>& out_h,  FMmatrix<double>& out_z)
+{
+  srand(time(0));
+  int M=x.numrow(), N=x.numcol();
+  int i,j;
+  //initialize
+  out_w.reset(M,K);
+  if(in_w.isempty())
+    out_w.randset();
+  else
+    {
+      if(in_w.numrow() != M || in_w.numcol() > K)
+	throw runtime_error("plca input w's dimension wrong!");
+      for(i=0;i<M;i++)
+	for(j=0;j<in_w.numcol();j++)
+	  out_w(i,j)=in_w(i,j);
+      for(;j<K;j++)
+	for(i=0;i<M;i++)
+	  out_w(i,j)=rand()%1000+1;	
+    }
+  mat_ewdiv_vec(out_w,out_w,sum(out_w,1));
+
+  out_h.reset(K,N);
+  if(in_h.isempty())
+    out_h.randset();
+  else
+    {
+      if(in_h.numcol() != N || in_h.numrow()>K)
+	throw runtime_error("plca input h's dimension wrong!");
+      for(i=0;i<in_h.numrow();i++)
+	for(j=0;j<N;j++)
+	  out_h(i,j)=in_h(i,j);
+      for(;i<K;i++)
+	for(j=0;j<N;j++)
+	  out_h(i,j)=rand()%1000+1;
+    }
+  mat_ewdiv_vec(out_h,out_h,sum(out_h,2));
+  
+  if(!in_z.isempty() && (in_z.numrow() != 1 || in_z.numcol() != K))
+    throw runtime_error("the input z should be an empty matrix or a 1*K matrix!");
+  if(in_z.isempty())
+    {
+      out_z.reset(1,K);
+      out_z.randset();
+    }
+  else
+    out_z=in_z;
+  mat_ewdiv_vec(out_z,out_z,sum(out_z,0));
+
+  FMmatrix<double> sw,sh,sz;
+  FMmatrix<double> tempsum;
+  bool isws, ishs, iszs;
+  if(in_sw.numel()==1)
+    sw.reset(iter,K,in_sw(0));
+  else
+    {
+      if(in_sw.numrow() != iter || in_sw.numcol() != K)
+	throw runtime_error("in_sw should only be 1*1 matrix or iter*K matrix");
+      sw=in_sw;
+    }
+  tempsum=sum(in_sw,0);
+  isws=(tempsum(0) != 0);
+ 
+  if(in_sh.numel()==1)
+    sh.reset(iter,K,in_sh(0));
+  else
+    {
+      if(in_sh.numrow() != iter || in_sh.numcol() != K)
+	throw runtime_error("in_sh should only be 1*1 matrix or iter*K matrix");
+      sh=in_sh;
+    }
+  tempsum=sum(in_sh,0);
+  ishs=(tempsum(0) != 0);
+
+  if(in_sz.numel()==1)
+    sz.reset(iter,K,in_sz(0));
+  else
+    {
+      if(in_sz.numrow() != iter || in_sz.numcol() != K)
+	throw runtime_error("in_sz should only be 1*1 matrix or iter*K matrix");
+      sz=in_sz;
+    }
+  tempsum=sum(in_sz,0);
+  iszs=(tempsum(0) != 0);
+
+  FMmatrix<double> zh(K,N);
+  FMmatrix<double> R;
+  FMmatrix<double> tempprod, tempcol, temprow;
+  FMmatrix<double> nw,nh;
+  int it;
+  bool islw=false, islh=false;
+  if(lw.numrow() != 1 || lw.numcol() != K)
+    throw runtime_error("lw should be a 1*K matrix");
+  for(i=0;i<K;i++)
+    if(lw(i))
+      {
+	islw=true;
+	break;
+      }
+
+  if(lh.numrow() != 1 || lh.numcol() != K)
+    throw runtime_error("lh should be a 1*K matrix");
+  for(i=0;i<K;i++)
+    if(lh(i))
+      {
+	islh=true;
+	break;
+      }
+  
+  for(it=0;it<iter;it++)
+    {
+      //zh=diag(z)*h
+      mat_ewmult_vec(zh, out_h, out_z.transp());
+      //tempprod=w*zh
+      mat_mult(tempprod, out_w, zh);
+      //R=x./(w*zh)
+      ew_div(R, x, tempprod);
+      
+      //M-step
+      if(islw)
+	{
+	  // nw=w.*(R*zh')
+	  mat_mult(tempprod, R, zh.transp());
+	  ew_mult(nw, out_w, tempprod);
+	}
+      if(islh)
+	{
+	  //nh = zh .* (w'*R);
+	  mat_mult(tempprod, out_w.transp(), R);
+	  ew_mult(nh,zh,tempprod);
+	}
+
+      if(islw)
+	z=sum(nw,1);
+      else if(islh)
+	z=sum(nh,2);
+      
+      //Impose sparsity constraints
+      int tl;
+      if(isws)
+	for(tl=0;tl<lw.numel();tl++)
+	  if(lw(tl))
+	    {
+	      tempcol=lambert_compute_with_offset(nw.getcol(tl), sw(it,tl), 0);
+	      tempcol.avoidzero();
+	      tempsum=sum(tempcol,0);
+	      scalar_mult_mat(tempcol,1/tempsum(0),tempcol);
+	      out_w.setcol(tl, tempcol);
+	    }
+      
+      if(ishs)
+	for(tl=0;tl<lh.numel();tl++)
+	  if(lh(tl))
+	    {
+	      temprow=lambert_compute_with_offset(nh.getrow(tl), sh(it,tl), 0);
+	      temprow.avoidzero();
+	      tempsum=sum(temprow,0);
+	      scalar_mult_mat(temprow,1/tempsum(0),temprow);
+	      out_h.setrow(tl,temprow);
+	    }
+      
+      if(iszs)
+	out_z=lambert_compute_with_offset(out_z, sz(it), 0);
+      out_z.avoidzero();
+      tempsum=sum(out_z,0);
+      scalar_mult_mat(out_z,1/tempsum(0),out_z);    
+    }  
+}
+
+
+FMmatrix<double> lambert_compute_with_offset(FMmatrix<double>& omeg, double z, double lam_offset)
+{
+  if(omeg.numrow() != 1 && omeg.numcol() != 1)
+    throw runtime_error("In lambert_compute_with_offset: omeg should be a vector!");
+  if(z==0)
+    throw runtime_error("In lambert_compute_with_offset: z can't be zero!");
+  omeg.avoidzero();
+  FMmatrix<double> oz;
+  scalar_mult_mat(oz, -1/z, omeg);
+  FMmatrix<double> lambda;
+  FMmatrix<double> logomeg;
+
+  if(z>0)
+    {
+      //lambda= min(z*(log(z)-log(omeg)-2)-1)-lam_offset
+      logmat(logomeg,omeg);
+      scalar_mult_mat(logomeg,-z,logomeg);
+      scalar_add_mat(logomeg,z*log(z)-2*z-1,logomeg);
+      lambda=min(logomeg,0);
+      scalar_add_mat(lambda,-lam_offset,lambda);
+    }
+  else
+    {
+      //lambda=-sum(omeg)-min(log(omeg))
+      logmat(logomeg,omeg);
+      mat_add(lambda,sum(omeg,0),min(logomeg,0));
+      scalar_mult_mat(lambda,-1,lambda);	
+    }
+  lambda.reset(omeg.numrow(),omeg.numcol(),lambda(0));
+  FMmatrix<double> thet(omeg.numrow(),omeg.numcol());
+  FMmatrix<double> la(omeg.numrow(),omeg.numcol());
+  FMmatrix<double> tempsum;
+  int lIter;
+  for(lIter=0;lIter<2;lIter++)
+    {
+      //la=log(sgn*oz)+(1+lambda/z)   sgn=sign(-z)
+      la=oz;
+      if(z>0)
+	scalar_mult_mat(la,-1,la);
+      logmat(la,la);
+      scalar_add_mat(la,1,la);
+      scalar_mult_mat(lambda,1/z,lambda);
+      mat_add(la,la,lambda);
+      
+      if(z>0)
+	{
+	  for(i=0;i<omeg.numel();i++)
+	    {
+	      if(la(i)>-745) //gidx
+		thet(i)=oz(i)/LambertW1(-1*exp(la(i)));
+	      else
+		thet(i)=oz(i)/lambert_arg_outof_range(la(i));
+	    }
+	}
+      else
+	{
+	  for(i=0;i<omeg.numel();i++)
+	    {
+	      if(la(i)<709) //gidx
+		thet(i)=oz(i)/LambertW(exp(la(i)));
+	      else
+		thet(i)=oz(i)/lambert_arg_outof_range(la(i));
+	    }
+	}
+      tempsum=sum(thet,0);
+      scalar_mult_mat(thet, 1/tempsum(0),thet);
+      ew_div(lambda,omeg,thet);
+      logmat(logomeg,thet);  //logomeg=log(thet)
+      scalar_mult_mat(logomeg,z,logomeg);
+      mat_add(lambda,lambda,logomeg);
+      scalar_mult_mat(lambda,-1,lambda);
+      scalar_add_mat(lambda,-z-lam_offset,lambda);      
+    }
+  return thet;
+}
