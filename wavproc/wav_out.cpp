@@ -29,7 +29,7 @@ int WAV_OUT::close_wave_file()
 
 /**********************************************************
 **********************************************************/
-int WAV_OUT::save_wave_file(char *fname)
+int WAV_OUT::save_wave_file(const char *fname)
 {
 	unsigned int wstat;
 	int wbuff_len;
@@ -175,7 +175,7 @@ int WAV_OUT::write_current_output(double ooo)
 
 /**********************************************************
 **********************************************************/
-int WAV_OUT::create_wave_file(char *fname)
+int WAV_OUT::create_wave_file(const char *fname)
 {
 	unsigned int wstat;
 	int i;
@@ -275,7 +275,7 @@ int WAV_OUT::create_wave_file(char *fname)
 
 /********************************************\
 \********************************************/
-WAV_OUT::WAV_OUT(char *fname,double _fs_hz,int _bits_per_sample,int _num_ch)
+WAV_OUT::WAV_OUT(const char *fname,double _fs_hz,int _bits_per_sample,int _num_ch)
 {
 	fs_hz = _fs_hz;
 	bits_per_sample = _bits_per_sample;
@@ -296,7 +296,7 @@ WAV_OUT::WAV_OUT(char *fname,double _fs_hz,int _bits_per_sample,int _num_ch)
 
 /********************************************\
 \********************************************/
-WAV_OUT::WAV_OUT(char *fname,WAV_IN *wav_in)
+WAV_OUT::WAV_OUT(const char *fname,WAV_IN *wav_in)
 {
 	fs_hz = wav_in->fs_hz;
 	bits_per_sample = wav_in->bits_per_sample;

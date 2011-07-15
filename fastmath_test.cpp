@@ -130,24 +130,150 @@ int main()
   ret=norm2(D,0);
   cout<<"norm2 of the whole mat is "<<endl;
   ret.printmat();*/
-  srand(time(0));
-  FMmatrix<double> A(300,400);
-  FMmatrix<double> B(400,500);
+  /*srand(time(0));
+  int rowA,colA,colB;
+  rowA=3000;
+  colA=4000;
+  colB=5000;
+  FMmatrix<double> A(rowA,colA);
+  FMmatrix<double> B(colA,colB);
   FMmatrix<double> C;
 
   //initilize
   int i,j;
-  for(i=0;i<300;i++)
-    for(j=0;j<400;j++)
+  for(i=0;i<rowA;i++)
+    for(j=0;j<colA;j++)
       A.setval(i,j,rand()%20);
-  for(i=0;i<400;i++)
-    for(j=0;j<500;j++)
+  for(i=0;i<colA;i++)
+    for(j=0;j<colB;j++)
       B.setval(i,j,rand()%15);
-  mat_mult(C, A, B);
+  clock_t start,finish;
+  double t;
+  start=clock();
+  mat_mult(C, A, B,1000);
+  finish=clock();
+  t=(double)(finish-start)/CLOCKS_PER_SEC;
   mat2asc("A.txt", A.getrow(), A.getcol(),A.getdata());
   mat2asc("B.txt", B.getrow(), B.getcol(),B.getdata());
   mat2asc("C.txt", C.getrow(), C.getcol(),C.getdata());
-  return 0;
+  cout<<"timeused: "<<t<<"sec"<<endl;
+  return 0;*/
+
+  //test constructors
+  int rowA=3, colA=4, rowC=4, colC=5;
+  FMmatrix<double> A(rowA,colA,3);
+  FMmatrix<double> B(A);
+  FMmatrix<double> C(rowC,colC);
+  FMmatrix<double> D;
+
+  C.randset();
+  D.reset(2,5);
+  D.reset(2,4);
+  D.randset();
+
+  cout<<"C is"<<endl;
+  C.printmat();
+  cout<<"D is"<<endl;
+  D.printmat();
   
+  cout<<"C(1,2) is "<<C(1,2)<<endl;
+  cout<<"C(5) is "<<C(5)<<endl;
+
+  cout<<"number of row of C is "<<C.numrow()<<endl;
+  cout<<"number of col of C is "<<C.numcol()<<endl;
+
+  D.clear();
+  cout<<"is D empty? "<<D.isempty()<<endl;
+
+  FMmatrix<double> E;
+  cout<<"number of elements in E is "<<E.numel()<<endl;
+  cout<<"number of elements in C is "<<C.numel()<<endl;
+
+  E=C.transp();
+  cout<<"transpose of C is "<<endl;
+  E.printmat();
+
+  E.reset(3,4,0);
+  E.avoidzero();
+  cout<<"After avoiding zero, E is"<<endl;
+  E.printmat();
+  
+  E=C.getrow(1);
+  cout<<"row(1) of C is "<<endl;
+  E.printmat();
+  E=C.getcol(2);
+  cout<<"row(2) of C is"<<endl;
+  E.printmat();
+
+  E.reset(4,5,1);
+  E.setrow(1,C.getrow(1));
+  E.setcol(2,C.getcol(2));
+  cout<<"now E is "<<endl;
+  E.printmat();
+
+  cout<<"A is"<<endl;
+  A.printmat();
+  cout<<"B is"<<endl;
+  B.printmat();
+  scalar_mult_mat(B,0.3,A);
+  cout<<"B=A*0.3, B is "<<endl;
+  B.printmat();
+
+  scalar_add_mat(B,1.2,B);
+  cout<<"B=B+1.2, B is "<<endl;
+  B.printmat();
+  
+  mat_add(D,A,B);
+  cout<<"D=A+B, D is "<<endl;
+  D.printmat();
+
+  B.randset(5);
+  cout<<"After randset, B is "<<endl;
+  B.printmat();
+  
+  ew_mult(D,A,B);
+  cout<<"D=A.*B, D is "<<endl;
+  D.printmat();
+
+  ew_div(D,A,B);
+  cout<<"D=A./B, D is"<<endl;
+  D.printmat();
+
+  mat_mult(D,B,C);
+  cout<<"D=B*C, D is"<<endl;
+  D.printmat();
+
+  E.reset(1,colA);
+  E.randset(5);
+  cout<<"row vector E is"<<endl;
+  E.printmat();
+
+  mat_ewmult_vec(D,A,E);
+  cout<<"D=A element-wise multiply E, D is"<<endl;
+  D.printmat();
+  
+  
+  E.reset(rowA,1);
+  E.randset(5);
+  cout<<"column vector E is"<<endl;
+  E.printmat();
+  
+  mat_ewdiv_vec(D,A,E);
+  cout<<"D=A element-wise divide E, D is"<<endl;
+  D.printmat();
+
+  cout<<"C is"<<endl;
+  C.printmat();
+  logmat(D,C);
+  cout<<"D=log(C), D is"<<endl;
+  D.printmat();
+
+  cout<<"B is"<<endl;
+  B.printmat();
+  expmat(D,B);
+  cout<<"D=exp(B), D is"<<endl;
+  D.printmat();
+
+  return 0;
   
 }

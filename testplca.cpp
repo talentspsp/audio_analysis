@@ -10,26 +10,26 @@ using namespace std;
 int main()
 {
   srand(time(NULL));
-  size_t lent;
-  size_t lenf;
+  size_t lent=500;
+  size_t lenf=2049;
   size_t comp=10;
   size_t i,j;
   double sum=0;
-  //double* data=new double[lent*lenf];
+  double* data=new double[lent*lenf];
   bool st;
   double sz=0.001;
   double* ptz;
   double* pfz;
   double* pz;
-  size_t max_iter=2;
+  size_t max_iter=100;
   ofstream dataout("plcadata.txt");
-  /*  for(i=0;i<lent;i++)
+  for(i=0;i<lent;i++)
     for(j=0;j<lenf;j++)
       {
 	data[i*lenf+j]=rand()%1000+1;
 	sum+=data[i*lenf+j];
       }
-  cout<<"data:"<<endl;
+    //cout<<"data:"<<endl;
   for(i=0;i<lent;i++)
     {
       for(j=0;j<lenf;j++)
@@ -42,9 +42,9 @@ int main()
       dataout<<endl;
     }
   dataout.close();
-  cout<<endl<<endl;*/
-  double* data=bin2mat("testdata/80s_STFT.bin",&lent,&lenf);
-  sum=0;
+  cout<<endl<<endl;
+  //double* data=bin2mat("testdata/80s_STFT.bin",&lent,&lenf);
+  /* sum=0;
   for(i=0;i<lent;i++)
     for(j=0;j<lenf;j++)
       {
@@ -56,7 +56,7 @@ int main()
 	{
 	  data[i*lenf+j]=data[i*lenf+j]/sum;
 	}
-    }
+	}
   //ofstream dataout("plcadata.txt");
   for(i=0;i<lent;i++)
     {
@@ -66,7 +66,7 @@ int main()
 	}
       dataout<<endl;
     }
-  dataout.close();
+    dataout.close();*/
   clock_t start,finish;
   double timeused;
   start=clock();

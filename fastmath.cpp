@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <cmath>
+#include <ctime>
 using namespace std;
 
 template <class T>
@@ -49,7 +50,7 @@ inline void FMmatrix<T>::init(int in_row, int in_col)
   col=in_col;
   data=new T[row*col];
 }
-template <class T>
+/*template <class T>
 inline T FMmatrix<T>::getval(int r, int c)
 {
   if(r<0 || r>=row || c<0 || c>=col)
@@ -63,15 +64,49 @@ inline void FMmatrix<T>::setval(int r, int c, T val)
    if(r<0 || r>=row || c<0 || c>=col)
      throw runtime_error("index out of range!");
    data[r*col+c]=val;
-}
-
+   }*/
 
 template <class T>
-inline void scalar_mult_mat(T sc, const FMmatrix<T>& mat, FMmatrix<T>& result)
+inline T& FMmatrix<T>::operator()(int r, int c)
 {
-  if((result.row != mat.row || result.col != mat.col) && result.row !=0 )
-    throw runtime_error("result and mat's dimensions don't match!");
-  if(result.row==0)
+  if(r<0 || r>=row || c<0 || c>=col)
+    throw runtime_error("index out of range!");
+  return data[r*col+c];
+}
+
+template <class T>
+inline const T& FMmatrix<T>::operator()(int r, int c) const
+{
+  if(r<0 || r>=row || c<0 || c>=col)
+    throw runtime_error("index out of range!");
+  return data[r*col+c];
+}
+
+template <class T>
+inline T& FMmatrix<T>::operator()(int ind)
+{
+  if(ind<0 || ind>=row*col)
+    throw runtime_error("index out of range!");
+  return data[ind];
+}
+
+template <class T>
+inline const T& FMmatrix<T>::operator()(int ind) const
+{
+  if(ind<0 || ind>=row*col)
+    throw runtime_error("index out of range!");
+  return data[ind];
+}
+
+template <class T>
+inline void scalar_mult_mat(FMmatrix<T>& result, T sc, const FMmatrix<T>& mat)
+{
+  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+    {
+      delete [](result.data);
+      result.data==0;
+    }
+  if(result.data==0)
     {
       result.row=mat.row;
       result.col=mat.col;
@@ -83,14 +118,36 @@ inline void scalar_mult_mat(T sc, const FMmatrix<T>& mat, FMmatrix<T>& result)
 }
 
 template <class T>
+inline void scalar_add_mat(FMmatrix<T>& result, T sc, const FMmatrix<T>& mat)
+{
+  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+    {
+      delete [](result.data);
+      result.data==0;
+    }
+  if(result.data==0)
+    {
+      result.row=mat.row;
+      result.col=mat.col;
+      result.data=new T[result.row*result.col];
+    }
+  for(int i=0;i<result.row;i++)
+    for(int j=0;j<result.col;j++)
+      result.data[i*result.col+j]=mat.data[i*mat.col+j]+sc;
+}
+
+template <class T>
 inline void mat_add(FMmatrix<T>& result, const FMmatrix<T>& A, const FMmatrix<T>& B)
 {
   //check validation
   if(A.row != B.row || A.col != B.col)
     throw runtime_error("the dimensions of the adding matrices don't match!");
-  if((result.row != A.row || result.col != A.col) && result.row !=0)
-    throw runtime_error("the dimension of the result doesn't match that of the adding matrices!");
-  if(result.row ==0)
+  if((result.row != A.row || result.col != A.col) && result.data !=0)
+    {
+      delete [](result.data);
+      result.data==0;
+    }
+  if(result.data ==0)
     {
       result.row=A.row;
       result.col=A.col;
@@ -107,9 +164,12 @@ inline void ew_mult(FMmatrix<T>& result, const FMmatrix<T>& A, const FMmatrix<T>
    //check validation
   if(A.row != B.row || A.col != B.col)
     throw runtime_error("the dimensions of the element-wise multiplying matrices don't match!");
-  if((result.row != A.row || result.col != A.col) && result.row !=0)
-    throw runtime_error("the dimension of the result doesn't match that of the element-wise multiplying matrices!");
-  if(result.row ==0)
+  if((result.row != A.row || result.col != A.col) && result.data !=0)
+    {
+      delete [](result.data);
+      result.data==0;
+    }
+  if(result.data ==0)
     {
       result.row=A.row;
       result.col=A.col;
@@ -126,9 +186,12 @@ inline void ew_div(FMmatrix<T>& result, const FMmatrix<T>& A, const FMmatrix<T>&
    //check validation
   if(A.row != B.row || A.col != B.col)
     throw runtime_error("the dimensions of the element-wise dividing matrices don't match!");
-  if((result.row != A.row || result.col != A.col) && result.row !=0)
-    throw runtime_error("the dimension of the result doesn't match that of the element-wise dividing matrices!");
-  if(result.row ==0)
+  if((result.row != A.row || result.col != A.col) && result.data !=0)
+    {
+      delete [](result.data);
+      result.data==0;
+    }
+  if(result.data ==0)
     {
       result.row=A.row;
       result.col=A.col;
@@ -177,6 +240,48 @@ inline FMmatrix<T> mean(const FMmatrix<T>& A,int dim)
       break;
     default:
       throw runtime_error("no such option for mean!");
+    }
+  return ret;
+}
+
+template <class T>
+inline FMmatrix<T> sum(const FMmatrix<T>& A, int dim)
+{
+  T sum;
+  int i,j;
+  FMmatrix<T> ret;
+  switch(dim)
+    {
+    case 0:
+      ret.init(1,1);
+      sum=0;
+      for(i=0;i<A.row;i++)
+	for(j=0;j<A.col;j++)
+	  sum+=A.data[i*A.col+j];
+      ret.data[0]=sum;
+      break;
+    case 1:
+      ret.init(1,A.col);
+      for(j=0;j<A.col;j++)
+	{
+	  sum=0;
+	  for(i=0;i<A.row;i++)
+	    sum+=A.data[i*A.col+j];
+	  ret.data[j]=sum;
+	}
+      break;
+    case 2:
+      ret.init(A.row,1);
+      for(i=0;i<A.row;i++)
+	{
+	  sum=0;
+	  for(j=0;j<A.col;j++)
+	    sum+=A.data[i*A.col+j];
+	  ret.data[i]=sum;
+	}
+      break;
+    default:
+      throw runtime_error("no such option for sum!");
     }
   return ret;
 }
@@ -354,7 +459,7 @@ inline FMmatrix<T> norm2(const FMmatrix<T>& A, int dim)
 }
 
 template <class T>
-void FMmatrix<T>::printmat(const std::ostream& ou)
+void FMmatrix<T>::printmat(const std::ostream& ou) const
 {
   if(data==0)
     cout<<"the matrix is empty!"<<endl;
@@ -421,7 +526,7 @@ void MatrixMultiply(T *C, T *A, T *B, int hA, int wA, int wB, int crossover)
   }
   
   //R3=R1*R2
-  MatrixMultiply(R3,R1,R2,halfhA, halfwA, halfwB);
+  MatrixMultiply(R3,R1,R2,halfhA, halfwA, halfwB,crossover);
   //R3=MatrixMultiply2(R1,R2);
   
   //C12=R3, C22=R3
@@ -466,7 +571,7 @@ void MatrixMultiply(T *C, T *A, T *B, int hA, int wA, int wB, int crossover)
       SubB[m*halfwB+n]=B[m*wB+n];
     }
   }
-  MatrixMultiply(R3,SubA,SubB,halfhA,halfwA,halfwB);
+  MatrixMultiply(R3,SubA,SubB,halfhA,halfwA,halfwB,crossover);
   
   //R3=MatrixMultiply2(A.SubMat(1, 1),B.SubMat(1, 1));
   
@@ -481,7 +586,7 @@ void MatrixMultiply(T *C, T *A, T *B, int hA, int wA, int wB, int crossover)
   //R3=R3+R1*R2, can it be optimized
   //R3=R3+MatrixMultiply2(R1,R2);
   
-  MatrixMultiply(R4,R1,R2,halfhA, halfwA, halfwB);
+  MatrixMultiply(R4,R1,R2,halfhA, halfwA, halfwB,crossover);
   //R4=MatrixMultiply2(R1,R2);
   for (m=0; m<halfhA; m++) {
     for (n=0; n<halfwB; n++) {
@@ -514,7 +619,7 @@ void MatrixMultiply(T *C, T *A, T *B, int hA, int wA, int wB, int crossover)
     }
   }
   
-  MatrixMultiply(R4,R1,SubB,halfhA, halfwA, halfwB);
+  MatrixMultiply(R4,R1,SubB,halfhA, halfwA, halfwB,crossover);
   //R4=MatrixMultiply2(R1,R4);
   
   for (m=0; m<halfhA; m++) {
@@ -540,7 +645,7 @@ void MatrixMultiply(T *C, T *A, T *B, int hA, int wA, int wB, int crossover)
     }
   }
   
-  MatrixMultiply(R4,SubA,R2,halfhA, halfwA, halfwB);
+  MatrixMultiply(R4,SubA,R2,halfhA, halfwA, halfwB,crossover);
   //R4=MatrixMultiply2(R4,R2);
   for (m=0; m<halfhA; m++) {
     for (n=0; n<halfwB; n++) {
@@ -566,7 +671,7 @@ void MatrixMultiply(T *C, T *A, T *B, int hA, int wA, int wB, int crossover)
   }
   
   //R3=R3+R1*R2
-  MatrixMultiply(R4,R1,R2,halfhA, halfwA, halfwB);
+  MatrixMultiply(R4,R1,R2,halfhA, halfwA, halfwB,crossover);
   //R4=MatrixMultiply2(R1,R2);
   for (m=0; m<halfhA; m++) {
     for (n=0; n<halfwB; n++) {
@@ -605,7 +710,7 @@ void MatrixMultiply(T *C, T *A, T *B, int hA, int wA, int wB, int crossover)
     }
   }
   
-  MatrixMultiply(R3,R1,R2,halfhA, halfwA, halfwB);
+  MatrixMultiply(R3,R1,R2,halfhA, halfwA, halfwB,crossover);
   //R3=MatrixMultiply2(R1,R2);
   for (m=0; m<halfhA; m++) {
     for (n=0; n<halfwB; n++) {
@@ -692,8 +797,213 @@ void mat_mult(FMmatrix<T>& result, const FMmatrix<T>& A, const FMmatrix<T>& B, i
   if(A.col != B.row)
     throw runtime_error("error when calling mat_mult: the dimensions don't match!");
   if( (result.row != A.row || result.col != B.col) && result.data != 0)
-    throw runtime_error("error when calling mat_mult: the dimension of result doesn't match the two matrices");
+    {
+      delete []result.data;
+      result.data=0;
+    }
   if(result.data==0)
-    result.data=new T[A.row*B.col];
+    {
+      result.data=new T[A.row*B.col];
+      result.row=A.row;
+      result.col=B.col;
+    }
   MatrixMultiply(result.data, A.data, B.data, A.row, A.col, B.col, crossover);
+}
+
+template <class T>
+inline void FMmatrix<T>::clear()
+{
+  if(data != 0)
+    delete []data;
+  data=0;
+  row=0;
+  col=0;
+}
+
+template <class T>
+inline void FMmatrix<T>::reset(int in_row, int in_col)
+{
+  if(data !=0 )
+    delete []data;
+  data=new T[in_row*in_col];
+  row=in_row;
+  col=in_col;
+}
+
+template <class T>
+inline void FMmatrix<T>::reset(int in_row, int in_col, T val)
+{
+  if(data !=0 )
+    delete []data;
+  data=new T[in_row*in_col];
+  row=in_row;
+  col=in_col;
+  for(int i=0;i<row*col;i++)
+    data[i]=val;
+}
+
+template <class T>
+inline void FMmatrix<T>::randset(int M)
+{
+  srand(time(0));
+  for(int i=0;i<row*col;i++)
+    data[i]=rand()%M+1;
+}
+
+template <class T>
+inline void mat_ewmult_vec(FMmatrix<T>& result, const FMmatrix<T>& mat, const FMmatrix<T>& vec)
+{
+  if(vec.row != 1 && vec.col != 1)
+    throw runtime_error("one dimemsion of the vector should be 1");
+  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+    {
+      delete [](result.data);
+      result.data=0;
+    }
+  if(result.data==0)
+    {
+      result.row=mat.row;
+      result.col=mat.col;
+      result.data=new T[result.row*result.col];
+    }
+  int i,j;
+  if(vec.row == 1 && vec.col == mat.col)
+    {
+      for(i=0;i<mat.row;i++)
+	for(j=0;j<mat.col;j++)
+	  result.data[i*result.col+j]=mat.data[i*mat.col+j]*vec.data[j];
+    }
+  else if(vec.col==1 && vec.row==mat.row)
+    {
+      for(j=0;j<mat.col;j++)
+	for(i=0;i<mat.row;i++)
+	  result.data[i*result.col+j]=mat.data[i*mat.col+j]*vec.data[i];
+    }
+  else
+    throw runtime_error("In mat_ewmult_vec: the dimensions of mat and vec don't match!");
+}
+
+template <class T>
+inline void mat_ewdiv_vec(FMmatrix<T>& result, const FMmatrix<T>& mat, const FMmatrix<T>& vec)
+{
+  if(vec.row != 1 && vec.col != 1)
+    throw runtime_error("one dimemsion of the vector should be 1");
+  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+    {
+      delete [](result.data);
+      result.data=0;
+    }
+  if(result.data==0)
+    {
+      result.row=mat.row;
+      result.col=mat.col;
+      result.data=new T[result.row*result.col];
+    }
+  int i,j;
+  if(vec.row == 1 && vec.col == mat.col)
+    {
+      for(i=0;i<mat.row;i++)
+	for(j=0;j<mat.col;j++)
+	  result.data[i*result.col+j]=mat.data[i*mat.col+j]/vec.data[j];
+    }
+  else if(vec.col==1 && vec.row==mat.row)
+    {
+      for(j=0;j<mat.col;j++)
+	for(i=0;i<mat.row;i++)
+	  result.data[i*result.col+j]=mat.data[i*mat.col+j]/vec.data[i];
+    }
+  else
+    throw runtime_error("In mat_ewdiv_vec: the dimensions of mat and vec don't match!");
+}
+
+template <class T>
+inline FMmatrix<T> FMmatrix<T>::transp() const
+{
+  if(data==0)
+    throw runtime_error("Can't perform transpose on empty matrix!");
+  FMmatrix<T> t(col,row);
+  for(int i=0;i<row;i++)
+    for(int j=0;j<col;j++)
+      t.data[j*row+i]=data[i*col+j];
+  return t;
+}
+
+template <class T>
+inline void logmat(FMmatrix<T>& result, const FMmatrix<T>& mat)
+{
+  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+    {
+      delete [](result.data);
+      result.data=0;
+    }
+  if(result.data==0)
+    {
+      result.row=mat.row;
+      result.col=mat.col;
+      result.data=new T[result.row*result.col];
+    }
+  for(int i=0;i<mat.row*mat.col;i++)
+    result.data[i]=log(mat.data[i]);
+}
+
+template <class T>
+inline void expmat(FMmatrix<T>& result, const FMmatrix<T>& mat)
+{
+  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+    {
+      delete [](result.data);
+      result.data=0;
+    }
+  if(result.data==0)
+    {
+      result.row=mat.row;
+      result.col=mat.col;
+      result.data=new T[result.row*result.col];
+    }
+  for(int i=0;i<mat.row*mat.col;i++)
+    result.data[i]=exp(mat.data[i]);
+}
+
+template <class T>
+FMmatrix<T> FMmatrix<T>::getrow(int rowind) const
+{
+  if(rowind<0 || rowind>=row)
+    throw runtime_error("In getrow: row index out of range!");
+  FMmatrix<T> ret(1,col);
+  for(int j=0;j<col;j++)
+    ret.data[j]=data[rowind*col+j];
+  return ret;
+}
+
+template <class T>
+FMmatrix<T> FMmatrix<T>::getcol(int colind) const
+{
+  if(colind<0 || colind>=col)
+    throw runtime_error("In getcol: col index out of range!");
+  FMmatrix<T> ret(row,1);
+  for(int i=0;i<row;i++)
+    ret.data[i]=data[i*col+colind];
+  return ret;
+}
+
+template <class T>
+void FMmatrix<T>::setrow(int rowind, const FMmatrix<T>& val)
+{
+  if(rowind<0 || rowind>=row)
+    throw runtime_error("In setrow: row index out of range!");
+  if(val.row*val.col<col)
+    throw runtime_error("In setrow: not enough element in val!");
+  for(int j=0;j<col;j++)
+    data[rowind*col+j]=val.data[j];
+}
+
+template <class T>
+void FMmatrix<T>::setcol(int colind, const FMmatrix<T>& val)
+{
+  if(colind<0 || colind>=col)
+    throw runtime_error("In setcol: col index out of range!");
+  if(val.row*val.col<row)
+    throw runtime_error("In setcol: not enough element in val!");
+  for(int i=0;i<row;i++)
+    data[i*col+colind]=val.data[i];
 }

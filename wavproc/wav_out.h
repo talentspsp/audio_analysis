@@ -15,10 +15,10 @@ public:
 	// create a new wav_out with given parameters
 	//  note: soundcards typically support a limited range of values!
 	//        hence the next constructor is safer: WAV_OUT(WAV_IN *wav);
-	WAV_OUT(char *fname,double fs_hz,int bits_per_sample,int num_ch);
+	WAV_OUT(const char *fname,double fs_hz,int bits_per_sample,int num_ch);
 	
 	// create a wav_out with the same parameters as a given wav_in
-	WAV_OUT(char *fname,WAV_IN *wav_in);	
+	WAV_OUT(const char *fname,WAV_IN *wav_in);	
 
 	~WAV_OUT();
 	
@@ -34,14 +34,14 @@ public:
 protected:
 	
 	// creates file and writes header (arbitrary length set to 1 sec)
-	int create_wave_file(char *fname);
+	int create_wave_file(const char *fname);
 
 	char *fname_copy;
 
 	// routine for saving a wave file. 
 	//  closes file, reopens, and corrects file length in header
 	//  returns 1 on success 
-	int save_wave_file(char *fname);
+	int save_wave_file(const char *fname);
 
 	FILE *fw;
 
