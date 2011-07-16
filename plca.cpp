@@ -6,7 +6,7 @@
 #include <ctime>
 using namespace std;
 
-FMmatrix<double> lambert_compute_with_offset(const FMmatrix<double>& omeg, double z, double lam_offset);
+FMmatrix<double> lambert_compute_with_offset(const FMmatrix<double>& in_omeg, double z, double lam_offset);
 
 void plca(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in_sz, const FMmatrix<double>& in_sw, const FMmatrix<double>& in_sh, const FMmatrix<double>& in_z, const FMmatrix<double>& in_w, const FMmatrix<double>& in_h, const FMmatrix<bool>& lw, const FMmatrix<bool>& lh, FMmatrix<double>& out_w,  FMmatrix<double>& out_h,  FMmatrix<double>& out_z)
 {
@@ -141,54 +141,69 @@ void plca(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in
 	}
 
       if(islw)
-	z=sum(nw,1);
+	out_z=sum(nw,1);
       else if(islh)
-	z=sum(nh,2);
+	out_z=sum(nh,2);
       
       //Impose sparsity constraints
       int tl;
       if(isws)
 	for(tl=0;tl<lw.numel();tl++)
-	  if(lw(tl))
+	  if(lw(tl) && sw(it,tl) != 0)
 	    {
-	      tempcol=lambert_compute_with_offset(nw.getcol(tl), sw(it,tl), 0);
-	      tempcol.avoidzero();
-	      tempsum=sum(tempcol,0);
-	      scalar_mult_mat(tempcol,1/tempsum(0),tempcol);
-	      out_w.setcol(tl, tempcol);
+	      nw.setcol(tl,lambert_compute_with_offset(nw.getcol(tl), sw(it,tl), 0));
+	      //out_w.setcol(tl, tempcol);
 	    }
       
       if(ishs)
 	for(tl=0;tl<lh.numel();tl++)
-	  if(lh(tl))
+	  if(lh(tl) && sh(it,tl) != 0)
 	    {
-	      temprow=lambert_compute_with_offset(nh.getrow(tl), sh(it,tl), 0);
-	      temprow.avoidzero();
-	      tempsum=sum(temprow,0);
-	      scalar_mult_mat(temprow,1/tempsum(0),temprow);
-	      out_h.setrow(tl,temprow);
+	      nh.setrow(tl,lambert_compute_with_offset(nh.getrow(tl), sh(it,tl), 0));
+	      //out_h.setrow(tl,temprow);
 	    }
       
-      if(iszs)
+      if(sz(it) != 0 )
 	out_z=lambert_compute_with_offset(out_z, sz(it), 0);
       out_z.avoidzero();
       tempsum=sum(out_z,0);
-      scalar_mult_mat(out_z,1/tempsum(0),out_z);    
+      scalar_mult_mat(out_z,1/tempsum(0),out_z); 
+      
+      for(tl=0;tl<lw.numel();tl++)
+	if(lw(tl))
+	  {
+	    tempcol=nw.getcol(tl);
+	    tempcol.avoidzero();
+	    tempsum=sum(tempcol,0);
+	    scalar_mult_mat(tempcol,1/tempsum(0),tempcol);
+	    out_w.setcol(tl, tempcol);
+	  }
+      for(tl=0;tl<lh.numel();tl++)
+	if(lh(tl))
+	  {
+	    temprow=nh.getrow(tl);
+	    temprow.avoidzero();
+	    tempsum=sum(temprow,0);
+	    scalar_mult_mat(temprow,1/tempsum(0),temprow);
+	    out_h.setrow(tl,temprow);
+	  }      
     }  
 }
 
 
-FMmatrix<double> lambert_compute_with_offset(FMmatrix<double>& omeg, double z, double lam_offset)
+FMmatrix<double> lambert_compute_with_offset(const FMmatrix<double>& in_omeg, double z, double lam_offset)
 {
-  if(omeg.numrow() != 1 && omeg.numcol() != 1)
+  if(in_omeg.numrow() != 1 && in_omeg.numcol() != 1)
     throw runtime_error("In lambert_compute_with_offset: omeg should be a vector!");
   if(z==0)
     throw runtime_error("In lambert_compute_with_offset: z can't be zero!");
+  FMmatrix<double> omeg(in_omeg);
   omeg.avoidzero();
   FMmatrix<double> oz;
   scalar_mult_mat(oz, -1/z, omeg);
   FMmatrix<double> lambda;
   FMmatrix<double> logomeg;
+  int i;
 
   if(z>0)
     {
@@ -204,7 +219,7 @@ FMmatrix<double> lambert_compute_with_offset(FMmatrix<double>& omeg, double z, d
       //lambda=-sum(omeg)-min(log(omeg))
       logmat(logomeg,omeg);
       mat_add(lambda,sum(omeg,0),min(logomeg,0));
-      scalar_mult_mat(lambda,-1,lambda);	
+      scalar_mult_mat(lambda,-1.0,lambda);	
     }
   lambda.reset(omeg.numrow(),omeg.numcol(),lambda(0));
   FMmatrix<double> thet(omeg.numrow(),omeg.numcol());
@@ -216,9 +231,9 @@ FMmatrix<double> lambert_compute_with_offset(FMmatrix<double>& omeg, double z, d
       //la=log(sgn*oz)+(1+lambda/z)   sgn=sign(-z)
       la=oz;
       if(z>0)
-	scalar_mult_mat(la,-1,la);
+	scalar_mult_mat(la,-1.0,la);
       logmat(la,la);
-      scalar_add_mat(la,1,la);
+      scalar_add_mat(la,1.0,la);
       scalar_mult_mat(lambda,1/z,lambda);
       mat_add(la,la,lambda);
       
@@ -248,7 +263,7 @@ FMmatrix<double> lambert_compute_with_offset(FMmatrix<double>& omeg, double z, d
       logmat(logomeg,thet);  //logomeg=log(thet)
       scalar_mult_mat(logomeg,z,logomeg);
       mat_add(lambda,lambda,logomeg);
-      scalar_mult_mat(lambda,-1,lambda);
+      scalar_mult_mat(lambda,-1.0,lambda);
       scalar_add_mat(lambda,-z-lam_offset,lambda);      
     }
   return thet;

@@ -88,11 +88,12 @@ public:
   inline void reset(int in_row, int in_col); //delete original data, re-allocate space
   inline void reset(int in_row, int in_col, T val);//delete original data, re-allocate space, set all the element as val
   inline void randset(int M=1000); //random set all the values between 1~M
-  FMmatrix<T> getrow(int rowind) const;
-  FMmatrix<T> getcol(int colind) const;
-  void setrow(int rowind, const FMmatrix<T>& val);
-  void setcol(int colind, const FMmatrix<T>& val);
-  
+  inline FMmatrix<T> getrow(int rowind) const;
+  inline FMmatrix<T> getcol(int colind) const;
+  inline void setrow(int rowind, const FMmatrix<T>& val);
+  inline void setcol(int colind, const FMmatrix<T>& val);
+  inline void setdata_cpy(int in_row, int in_col, const T* in_data); //this function will copy the data in in_data to the object
+  inline void setdata_ncpy(int in_row, int in_col, T* in_data); //this funciont will set this->data=in_data;
 
 
   friend void scalar_mult_mat<T>(FMmatrix<T>& result, T sc, const FMmatrix<T>& mat);

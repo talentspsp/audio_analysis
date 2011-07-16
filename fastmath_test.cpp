@@ -274,6 +274,10 @@ int main()
   cout<<"D=exp(B), D is"<<endl;
   D.printmat();
 
+  double* dp=new double[30];
+  D.setdata_cpy(5,6,dp);
+  D.setdata_ncpy(5,6,dp);
+
   return 0;
   
 }

@@ -965,7 +965,7 @@ inline void expmat(FMmatrix<T>& result, const FMmatrix<T>& mat)
 }
 
 template <class T>
-FMmatrix<T> FMmatrix<T>::getrow(int rowind) const
+inline FMmatrix<T> FMmatrix<T>::getrow(int rowind) const
 {
   if(rowind<0 || rowind>=row)
     throw runtime_error("In getrow: row index out of range!");
@@ -976,7 +976,7 @@ FMmatrix<T> FMmatrix<T>::getrow(int rowind) const
 }
 
 template <class T>
-FMmatrix<T> FMmatrix<T>::getcol(int colind) const
+inline FMmatrix<T> FMmatrix<T>::getcol(int colind) const
 {
   if(colind<0 || colind>=col)
     throw runtime_error("In getcol: col index out of range!");
@@ -987,7 +987,7 @@ FMmatrix<T> FMmatrix<T>::getcol(int colind) const
 }
 
 template <class T>
-void FMmatrix<T>::setrow(int rowind, const FMmatrix<T>& val)
+inline void FMmatrix<T>::setrow(int rowind, const FMmatrix<T>& val)
 {
   if(rowind<0 || rowind>=row)
     throw runtime_error("In setrow: row index out of range!");
@@ -998,7 +998,7 @@ void FMmatrix<T>::setrow(int rowind, const FMmatrix<T>& val)
 }
 
 template <class T>
-void FMmatrix<T>::setcol(int colind, const FMmatrix<T>& val)
+inline void FMmatrix<T>::setcol(int colind, const FMmatrix<T>& val)
 {
   if(colind<0 || colind>=col)
     throw runtime_error("In setcol: col index out of range!");
@@ -1006,4 +1006,26 @@ void FMmatrix<T>::setcol(int colind, const FMmatrix<T>& val)
     throw runtime_error("In setcol: not enough element in val!");
   for(int i=0;i<row;i++)
     data[i*col+colind]=val.data[i];
+}
+
+template <class T>
+inline void FMmatrix<T>::setdata_cpy(int in_row, int in_col, const T* in_data)
+{
+  if(data !=0 )
+    delete []data;
+  data=new T[in_row*in_col];
+  row=in_row;
+  col=in_col;
+  for(int i=0;i<row*col;i++)
+    data[i]=in_data[i];
+}
+
+template <class T>
+inline void FMmatrix<T>::setdata_ncpy(int in_row, int in_col, T* in_data)
+{
+  if(data !=0 )
+    delete []data;
+  data=in_data;
+  row=in_row;
+  col=in_col;
 }
