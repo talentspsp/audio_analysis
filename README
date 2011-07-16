@@ -3,7 +3,8 @@ This project implements plca-based sound classification system.
 All the core functions use basic data type array for matrix, such like double*, which will be easy to encapsulate into other data structure, or wrap into matlab mex functions.
 
 STFT.cpp/h: short time Fourier Transform.
-plca2d.cpp/h: plca2d algorithm, the output are P(f|z), P(z), Pt(z)
+plca2d.cpp/h: plca2d algorithm, the output are P(f|z), P(z), Pt(z). IT'S OUT OF DATE! USE plca.cpp/h
+plca.cpp/h: plca2d algorithm.
 comp_weight.cpp/h: calculate the weights of different sources in a given distribution
 spuc/ and libspuc.a: library used for FFT
 wavproc/ and libwavproc.a: library used for wav io

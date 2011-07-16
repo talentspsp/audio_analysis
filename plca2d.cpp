@@ -5,7 +5,7 @@
 #include <cmath>
 #include <ctime>
 #include "math_util.h"
-#include "LambertW1.h"
+#include "LambertWs.h"
 #include "LambertWnew.h"
 using namespace std;
 #define TOLERANT -600  //this the minimal base e expotional number for Lambert function, below this number should use lambert_arg_outof_range
