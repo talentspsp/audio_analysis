@@ -64,8 +64,8 @@ template <class T>
 class FMmatrix
 {
 public:
- FMmatrix(): row(0), col(0), data(0) {}
-  FMmatrix(int in_row, int in_col): row(in_row), col(in_col) {data=new T[row*col];}
+ FMmatrix(): row(0), col(0), data(0), capacity(0) {}
+ FMmatrix(int in_row, int in_col): row(in_row), col(in_col), capacity(in_row*in_col) {data=new T[row*col];}
   inline FMmatrix(int in_row, int in_col, T val);
   inline FMmatrix(const FMmatrix& rhs); //deep copy
   inline FMmatrix<T>& operator= (const FMmatrix& rhs); //deep copy
@@ -78,6 +78,7 @@ public:
   inline const T& operator()(int ind) const;
   int numrow() const {return row;}
   int numcol() const {return col;}
+  int getcap() const {return capacity;}
   T* getdata() const {return data;}
   bool isempty() const {return (data==0);}
   int numel() const {return row*col;}
@@ -113,10 +114,16 @@ public:
   friend FMmatrix<T> norm2<T>(const FMmatrix<T>& A, int dim);
   
   
-  ~FMmatrix() {delete []data;}
+  ~FMmatrix() 
+  {
+    if(data != 0)
+      delete []data;
+  }
 private:
   int row;
   int col;
+  int capacity; //the capacity of the data block, if a bigger block is needed, then free the original block, and allocate new block, otherwise, just used the original block
+  //so, row*col <= capacity, use capacity to reduce the free and allocation of memory
   T* data;
 };
 

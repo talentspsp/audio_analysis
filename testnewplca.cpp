@@ -38,7 +38,7 @@ int main()
   clock_t start,finish;
   double timeused;
   start=clock();
-  plca(x,K,iter, in_sz, in_sw, in_sh, in_z, in_w, in_h,lw, lh, out_w,out_h,out_z);
+  plca_BLAS(x,K,iter, in_sz, in_sw, in_sh, in_z, in_w, in_h,lw, lh, out_w,out_h,out_z);
   finish=clock();
   timeused=(double)(finish-start)/CLOCKS_PER_SEC;
   cout<<"Time used: "<<timeused<<"s"<<endl;

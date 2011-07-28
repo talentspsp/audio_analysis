@@ -11,6 +11,7 @@ inline FMmatrix<T>::FMmatrix(int in_row, int in_col, T val)
     throw runtime_error("row and column must be positive!");
   row=in_row;
   col=in_col;
+  capacity=row*col;
   data=new T[row*col];
   for(int i=0;i<row*col;i++)
     data[i]=val;
@@ -19,6 +20,7 @@ inline FMmatrix<T>::FMmatrix(int in_row, int in_col, T val)
 template <class T>
 inline FMmatrix<T>::FMmatrix(const FMmatrix& rhs): row(rhs.row), col(rhs.col)
 {
+  capacity=row*col;
   if(row>0)
     {
       data=new T[row*col];
@@ -29,16 +31,19 @@ inline FMmatrix<T>::FMmatrix(const FMmatrix& rhs): row(rhs.row), col(rhs.col)
 template <class T>
 inline FMmatrix<T>& FMmatrix<T>::operator= (const FMmatrix& rhs)
 {
-  if(row != 0)
-    delete []data;
+  if(rhs.row*rhs.col>capacity)
+    {
+      if(data != 0)
+	delete []data;
+      data=new T[rhs.row*rhs.col];
+      capacity=rhs.row*rhs.col;
+    }
   row=rhs.row;
   col=rhs.col;
-  if(row>0)
-    {
-      data=new T[row*col];
-      for(int i=0;i<row*col;i++)
-	data[i]=rhs.data[i];
-    }
+
+  for(int i=0;i<row*col;i++)
+    data[i]=rhs.data[i];
+
 }
 
 template <class T>
@@ -48,6 +53,7 @@ inline void FMmatrix<T>::init(int in_row, int in_col)
     throw runtime_error("can't use init to already initialized objects!");
   row=in_row;
   col=in_col;
+  capacity=row*col;
   data=new T[row*col];
 }
 /*template <class T>
@@ -101,17 +107,26 @@ inline const T& FMmatrix<T>::operator()(int ind) const
 template <class T>
 inline void scalar_mult_mat(FMmatrix<T>& result, T sc, const FMmatrix<T>& mat)
 {
-  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+  /*if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
     {
       delete [](result.data);
-      result.data==0;
+      result.data=0;
     }
   if(result.data==0)
     {
       result.row=mat.row;
       result.col=mat.col;
       result.data=new T[result.row*result.col];
+      }*/
+  if(mat.row*mat.col>result.capacity)
+    {
+      if(result.data != 0)
+	delete [](result.data);
+      result.data=new T[mat.row*mat.col];
+      result.capacity=mat.row*mat.col;
     }
+  result.row=mat.row;
+  result.col=mat.col;
   for(int i=0;i<result.row;i++)
     for(int j=0;j<result.col;j++)
       result.data[i*result.col+j]=mat.data[i*mat.col+j]*sc;
@@ -120,7 +135,7 @@ inline void scalar_mult_mat(FMmatrix<T>& result, T sc, const FMmatrix<T>& mat)
 template <class T>
 inline void scalar_add_mat(FMmatrix<T>& result, T sc, const FMmatrix<T>& mat)
 {
-  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+  /* if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
     {
       delete [](result.data);
       result.data==0;
@@ -130,7 +145,17 @@ inline void scalar_add_mat(FMmatrix<T>& result, T sc, const FMmatrix<T>& mat)
       result.row=mat.row;
       result.col=mat.col;
       result.data=new T[result.row*result.col];
+      }*/
+  if(mat.row*mat.col>result.capacity)
+    {
+      if(result.data != 0)
+	delete [](result.data);
+      result.data=new T[mat.row*mat.col];
+      result.capacity=mat.row*mat.col;
     }
+  result.row=mat.row;
+  result.col=mat.col;
+
   for(int i=0;i<result.row;i++)
     for(int j=0;j<result.col;j++)
       result.data[i*result.col+j]=mat.data[i*mat.col+j]+sc;
@@ -142,17 +167,27 @@ inline void mat_add(FMmatrix<T>& result, const FMmatrix<T>& A, const FMmatrix<T>
   //check validation
   if(A.row != B.row || A.col != B.col)
     throw runtime_error("the dimensions of the adding matrices don't match!");
-  if((result.row != A.row || result.col != A.col) && result.data !=0)
+  /*if((result.row != A.row || result.col != A.col) && result.data !=0)
     {
       delete [](result.data);
-      result.data==0;
+      result.data=0;
     }
   if(result.data ==0)
     {
       result.row=A.row;
       result.col=A.col;
       result.data=new T[result.row*result.col];
+      }*/
+  if(A.row*A.col>result.capacity)
+    {
+      if(result.data != 0)
+	delete [](result.data);
+      result.data=new T[A.row*A.col];
+      result.capacity=A.row*A.col;
     }
+  result.row=A.row;
+  result.col=A.col;
+
   for(int i=0;i<result.row;i++)
     for(int j=0;j<result.col;j++)
       result.data[i*result.col+j]=A.data[i*result.col+j]+B.data[i*result.col+j];
@@ -164,17 +199,27 @@ inline void ew_mult(FMmatrix<T>& result, const FMmatrix<T>& A, const FMmatrix<T>
    //check validation
   if(A.row != B.row || A.col != B.col)
     throw runtime_error("the dimensions of the element-wise multiplying matrices don't match!");
-  if((result.row != A.row || result.col != A.col) && result.data !=0)
+  /* if((result.row != A.row || result.col != A.col) && result.data !=0)
     {
       delete [](result.data);
-      result.data==0;
+      result.data=0;
     }
   if(result.data ==0)
     {
       result.row=A.row;
       result.col=A.col;
       result.data=new T[result.row*result.col];
+      }*/
+  if(A.row*A.col>result.capacity)
+    {
+      if(result.data != 0)
+	delete [](result.data);
+      result.data=new T[A.row*A.col];
+      result.capacity=A.row*A.col;
     }
+  result.row=A.row;
+  result.col=A.col;
+
   for(int i=0;i<result.row;i++)
     for(int j=0;j<result.col;j++)
       result.data[i*result.col+j]=A.data[i*result.col+j]*B.data[i*result.col+j];
@@ -186,17 +231,27 @@ inline void ew_div(FMmatrix<T>& result, const FMmatrix<T>& A, const FMmatrix<T>&
    //check validation
   if(A.row != B.row || A.col != B.col)
     throw runtime_error("the dimensions of the element-wise dividing matrices don't match!");
-  if((result.row != A.row || result.col != A.col) && result.data !=0)
+  /*if((result.row != A.row || result.col != A.col) && result.data !=0)
     {
       delete [](result.data);
-      result.data==0;
+      result.data=0;
     }
   if(result.data ==0)
     {
       result.row=A.row;
       result.col=A.col;
       result.data=new T[result.row*result.col];
+      }*/
+  if(A.row*A.col>result.capacity)
+    {
+      if(result.data != 0)
+	delete [](result.data);
+      result.data=new T[A.row*A.col];
+      result.capacity=A.row*A.col;
     }
+  result.row=A.row;
+  result.col=A.col;
+
   for(int i=0;i<result.row;i++)
     for(int j=0;j<result.col;j++)
       result.data[i*result.col+j]=A.data[i*result.col+j]/B.data[i*result.col+j];
@@ -796,7 +851,7 @@ void mat_mult(FMmatrix<T>& result, const FMmatrix<T>& A, const FMmatrix<T>& B, i
 {
   if(A.col != B.row)
     throw runtime_error("error when calling mat_mult: the dimensions don't match!");
-  if( (result.row != A.row || result.col != B.col) && result.data != 0)
+  /*if( (result.row != A.row || result.col != B.col) && result.data != 0)
     {
       delete []result.data;
       result.data=0;
@@ -806,7 +861,17 @@ void mat_mult(FMmatrix<T>& result, const FMmatrix<T>& A, const FMmatrix<T>& B, i
       result.data=new T[A.row*B.col];
       result.row=A.row;
       result.col=B.col;
+      }*/
+  if(A.row*B.col>result.capacity)
+    {
+      if(result.data != 0)
+	delete [](result.data);
+      result.data=new T[A.row*B.col];
+      result.capacity=A.row*B.col;
     }
+  result.row=A.row;
+  result.col=B.col;
+
   MatrixMultiply(result.data, A.data, B.data, A.row, A.col, B.col, crossover);
 }
 
@@ -818,14 +883,24 @@ inline void FMmatrix<T>::clear()
   data=0;
   row=0;
   col=0;
+  capacity=0;
 }
 
 template <class T>
 inline void FMmatrix<T>::reset(int in_row, int in_col)
 {
-  if(data !=0 )
+  /* if(data !=0 )
     delete []data;
-  data=new T[in_row*in_col];
+    data=new T[in_row*in_col];*/
+
+  if(in_row*in_col>capacity)
+    {
+      if(data != 0)
+	delete []data;
+      data=new T[in_row*in_col];
+      capacity=in_row*in_col;
+    }
+
   row=in_row;
   col=in_col;
 }
@@ -833,9 +908,17 @@ inline void FMmatrix<T>::reset(int in_row, int in_col)
 template <class T>
 inline void FMmatrix<T>::reset(int in_row, int in_col, T val)
 {
-  if(data !=0 )
+  /*if(data !=0 )
     delete []data;
-  data=new T[in_row*in_col];
+    data=new T[in_row*in_col];*/
+
+  if(in_row*in_col>capacity)
+    {
+      if(data != 0)
+	delete []data;
+      data=new T[in_row*in_col];
+      capacity=in_row*in_col;
+    }
   row=in_row;
   col=in_col;
   for(int i=0;i<row*col;i++)
@@ -855,7 +938,7 @@ inline void mat_ewmult_vec(FMmatrix<T>& result, const FMmatrix<T>& mat, const FM
 {
   if(vec.row != 1 && vec.col != 1)
     throw runtime_error("one dimemsion of the vector should be 1");
-  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+  /*if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
     {
       delete [](result.data);
       result.data=0;
@@ -865,7 +948,17 @@ inline void mat_ewmult_vec(FMmatrix<T>& result, const FMmatrix<T>& mat, const FM
       result.row=mat.row;
       result.col=mat.col;
       result.data=new T[result.row*result.col];
+      }*/
+  if(mat.row*mat.col>result.capacity)
+    {
+      if(result.data != 0)
+	delete [](result.data);
+      result.data=new T[mat.row*mat.col];
+      result.capacity=mat.row*mat.col;
     }
+  result.row=mat.row;
+  result.col=mat.col;
+
   int i,j;
   if(vec.row == 1 && vec.col == mat.col)
     {
@@ -888,7 +981,7 @@ inline void mat_ewdiv_vec(FMmatrix<T>& result, const FMmatrix<T>& mat, const FMm
 {
   if(vec.row != 1 && vec.col != 1)
     throw runtime_error("one dimemsion of the vector should be 1");
-  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+  /*if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
     {
       delete [](result.data);
       result.data=0;
@@ -898,7 +991,17 @@ inline void mat_ewdiv_vec(FMmatrix<T>& result, const FMmatrix<T>& mat, const FMm
       result.row=mat.row;
       result.col=mat.col;
       result.data=new T[result.row*result.col];
+      }*/
+  if(mat.row*mat.col>result.capacity)
+    {
+      if(result.data != 0)
+	delete [](result.data);
+      result.data=new T[mat.row*mat.col];
+      result.capacity=mat.row*mat.col;
     }
+  result.row=mat.row;
+  result.col=mat.col;
+
   int i,j;
   if(vec.row == 1 && vec.col == mat.col)
     {
@@ -931,7 +1034,7 @@ inline FMmatrix<T> FMmatrix<T>::transp() const
 template <class T>
 inline void logmat(FMmatrix<T>& result, const FMmatrix<T>& mat)
 {
-  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+  /* if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
     {
       delete [](result.data);
       result.data=0;
@@ -941,7 +1044,17 @@ inline void logmat(FMmatrix<T>& result, const FMmatrix<T>& mat)
       result.row=mat.row;
       result.col=mat.col;
       result.data=new T[result.row*result.col];
+      }*/
+  if(mat.row*mat.col>result.capacity)
+    {
+      if(result.data != 0)
+	delete [](result.data);
+      result.data=new T[mat.row*mat.col];
+      result.capacity=mat.row*mat.col;
     }
+  result.row=mat.row;
+  result.col=mat.col;
+
   for(int i=0;i<mat.row*mat.col;i++)
     result.data[i]=log(mat.data[i]);
 }
@@ -949,7 +1062,7 @@ inline void logmat(FMmatrix<T>& result, const FMmatrix<T>& mat)
 template <class T>
 inline void expmat(FMmatrix<T>& result, const FMmatrix<T>& mat)
 {
-  if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
+  /* if((result.row != mat.row || result.col != mat.col) && result.data !=0 )
     {
       delete [](result.data);
       result.data=0;
@@ -959,7 +1072,17 @@ inline void expmat(FMmatrix<T>& result, const FMmatrix<T>& mat)
       result.row=mat.row;
       result.col=mat.col;
       result.data=new T[result.row*result.col];
+      }*/
+  if(mat.row*mat.col>result.capacity)
+    {
+      if(result.data != 0)
+	delete [](result.data);
+      result.data=new T[mat.row*mat.col];
+      result.capacity=mat.row*mat.col;
     }
+  result.row=mat.row;
+  result.col=mat.col;
+
   for(int i=0;i<mat.row*mat.col;i++)
     result.data[i]=exp(mat.data[i]);
 }
@@ -1011,9 +1134,16 @@ inline void FMmatrix<T>::setcol(int colind, const FMmatrix<T>& val)
 template <class T>
 inline void FMmatrix<T>::setdata_cpy(int in_row, int in_col, const T* in_data)
 {
-  if(data !=0 )
+  /*if(data !=0 )
     delete []data;
-  data=new T[in_row*in_col];
+    data=new T[in_row*in_col];*/
+  if(in_row*in_col>capacity)
+    {
+      if(data != 0)
+	delete []data;
+      data=new T[in_row*in_col];
+      capacity=in_row*in_col;
+    }
   row=in_row;
   col=in_col;
   for(int i=0;i<row*col;i++)
@@ -1028,4 +1158,5 @@ inline void FMmatrix<T>::setdata_ncpy(int in_row, int in_col, T* in_data)
   data=in_data;
   row=in_row;
   col=in_col;
+  capacity=row*col;
 }

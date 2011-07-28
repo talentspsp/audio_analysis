@@ -23,5 +23,19 @@
 
 void plca(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in_sz, const FMmatrix<double>& in_sw, const FMmatrix<double>& in_sh, const FMmatrix<double>& in_z, const FMmatrix<double>& in_w, const FMmatrix<double>& in_h, const FMmatrix<bool>& lw, const FMmatrix<bool>& lh, FMmatrix<double>& out_w,  FMmatrix<double>& out_h,  FMmatrix<double>& out_z);
 
+/*
+  plca_BLAS is similar to plca, but it uses BLAS routines to do the matrix multiplication.
+  *************** Notice *****************
+  1 To achieve the optimal speed, you should use the BLAS library shipped with your machine.
+    To do this:
+    1) you need to change 
+    #include "CBLAS/include/cblas.h"
+    in plca_BLAS.cpp to your blas header file.
+    2) you need to change BLASLIB to the native blas library you want to link against, e.g. on Mac OSX, it can be "-framework veclib". Change BLASHEADER to the path to the header file you used.
+
+  2 If you don't have a native blas library, then you need to install BLAS and CBLAS. You just need to go to these two directories and type "make all". And you can use the configuration for BLASLIB and BLASHEADER in the provided Makefile. You can type "make testnewplca_BLAS" to see how to compile it. Notice: if you use the non-native BLAS library, plca_BLAS is not guaranteed to be faster than plca.
+ */
+void plca_BLAS(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in_sz, const FMmatrix<double>& in_sw, const FMmatrix<double>& in_sh, const FMmatrix<double>& in_z, const FMmatrix<double>& in_w, const FMmatrix<double>& in_h, const FMmatrix<bool>& lw, const FMmatrix<bool>& lh, FMmatrix<double>& out_w,  FMmatrix<double>& out_h,  FMmatrix<double>& out_z);
+
 
 #endif

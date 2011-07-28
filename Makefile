@@ -9,8 +9,8 @@ SRCSSTFT = teststft.cpp STFT.cpp math_util.h matfile.h matfile.cpp
 CPPFILESSTFT = teststft.cpp STFT.cpp matfile.cpp
 SRCSPLCA = math_util.h LambertWs.h plca2d.cpp LambertWs.cpp plca2d.h testplca.cpp matfile.cpp matfile.h LambertWnew.h LambertWnew.cpp
 CPPFILESPLCA = LambertWs.cpp plca2d.cpp testplca.cpp matfile.cpp LambertWnew.cpp
-SRCSNEWPLCA = fastmath.h fastmath.cpp LambertWs.h LambertWs.cpp plca.h plca.cpp testnewplca.cpp matfile.h matfile.cpp
-CPPFILESNEWPLCA = LambertWs.cpp plca.cpp testnewplca.cpp matfile.cpp
+SRCSNEWPLCA = fastmath.h fastmath.cpp LambertWs.h LambertWs.cpp plca.h plca_BLAS.cpp testnewplca.cpp matfile.h matfile.cpp
+CPPFILESNEWPLCA = LambertWs.cpp plca_BLAS.cpp testnewplca.cpp matfile.cpp
 SRCSCOMP = testcompweight.cpp comp_weight.cpp matfile.cpp math_util.h comp_weight.h matfile.h
 CPPFILESCOMP = testcompweight.cpp  comp_weight.cpp matfile.cpp
 SRCSAA = STFT.cpp math_util.h LambertWs.h plca2d.cpp LambertWs.cpp plca2d.h comp_weight.cpp matfile.cpp comp_weight.h matfile.h testaudioanalyzer.cpp STFT.h audio_analyzer.h audio_analyzer.cpp
@@ -24,6 +24,8 @@ LIBWAV = $(LIBWAVDIR)/libwavproc.a
 LIBFLAG = -lspuc -lm
 LIBFLAGWAV = -lwavproc
 HEADERPATH = -I./spuc -I./spuc/generic
+BLASLIB = ./CBLAS/lib/cblas_DARWIN.a ./BLAS/blas_DARWIN.a
+BLASHEADER = -ICBLAS/src -ICBLAS/include
 
 $(EXECEP): $(SRCSEP) $(LIB) $(LIBWAV)
 	  $(CC) -O2 -o $(EXECEP) $(CPPFILESEP) -L$(LIBDIR) $(LIBFLAG) -L$(LIBWAVDIR) $(LIBFLAGWAV) $(HEADERPATH)
@@ -47,14 +49,17 @@ $(EXECTPLCA)_debug: $(SRCSPLCA)
 
 $(EXECTNEWPLCA): $(SRCSNEWPLCA)
 	$(CC) -O2 -o $(EXECTNEWPLCA) $(CPPFILESNEWPLCA)
-$(EXECTNEWPLCA)_debug: $(SRCSPLCA)
-	$(CC) -g -ggdb -DTEST -o $(EXECTNEWPLCA) $(CPPFILESNEWPLCA)
+
+$(EXECTNEWPLCA)_BLAS: $(SRCSNEWPLCA)
+	$(CC) -O3 -DADD_ -o $(EXECTNEWPLCA)_BLAS $(CPPFILESNEWPLCA) $(BLASLIB) $(BLASHEADER)
 
 $(EXECTCOMP): $(SRCSCOMP)
 	$(CC) -O2 -o $(EXECTCOMP) $(CPPFILESCOMP)
 $(EXECTCOMP)_debug: $(SRCSCOMP)
 	$(CC) -g -ggdb -o $(EXECTCOMP) $(CPPFILESCOMP)
 
+compare_matmult: compare_matmult.cpp
+	g++ -O3 -DADD_ -o compare_matmult compare_matmult.cpp matfile.cpp -framework veclib
 clean:
 	rm -f *~
 	rm -f *#
