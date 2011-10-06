@@ -4,13 +4,16 @@ EXECTAA = testaa
 EXECTSTFT = teststft
 EXECTPLCA = testplca
 EXECTNEWPLCA = testnewplca
+EXECTPLCABLAS = testplcablas
 EXECTCOMP = testcompweight
 SRCSSTFT = teststft.cpp STFT.cpp math_util.h matfile.h matfile.cpp
 CPPFILESSTFT = teststft.cpp STFT.cpp matfile.cpp
 SRCSPLCA = math_util.h LambertWs.h plca2d.cpp LambertWs.cpp plca2d.h testplca.cpp matfile.cpp matfile.h LambertWnew.h LambertWnew.cpp
 CPPFILESPLCA = LambertWs.cpp plca2d.cpp testplca.cpp matfile.cpp LambertWnew.cpp
-SRCSNEWPLCA = fastmath.h fastmath.cpp LambertWs.h LambertWs.cpp plca.h plca_BLAS.cpp testnewplca.cpp matfile.h matfile.cpp
-CPPFILESNEWPLCA = LambertWs.cpp plca_BLAS.cpp testnewplca.cpp matfile.cpp
+SRCSNEWPLCA = fastmath.h fastmath.cpp LambertWs.h LambertWs.cpp plca.h testnewplca.cpp matfile.h matfile.cpp plca.cpp
+CPPFILESNEWPLCA = LambertWs.cpp testnewplca.cpp matfile.cpp plca.cpp
+SRCSPLCABLAS = fastmath.h fastmath.cpp LambertWs.h LambertWs.cpp plca.h testplcablas.cpp matfile.h matfile.cpp plca_BLAS.cpp
+CPPFILESPLCABLAS = LambertWs.cpp testplcablas.cpp matfile.cpp plca_BLAS.cpp
 SRCSCOMP = testcompweight.cpp comp_weight.cpp matfile.cpp math_util.h comp_weight.h matfile.h
 CPPFILESCOMP = testcompweight.cpp  comp_weight.cpp matfile.cpp
 SRCSAA = STFT.cpp math_util.h LambertWs.h plca2d_wrapper.cpp fastmath.h fastmath.cpp LambertWs.cpp plca2d.h comp_weight.cpp matfile.cpp comp_weight.h matfile.h testaudioanalyzer.cpp STFT.h audio_analyzer.h audio_analyzer.cpp plca.h plca.cpp
@@ -60,8 +63,8 @@ $(EXECTPLCA)_debug: $(SRCSPLCA)
 $(EXECTNEWPLCA): $(SRCSNEWPLCA)
 	$(CC) -O2 -o $(EXECTNEWPLCA) $(CPPFILESNEWPLCA)
 
-$(EXECTNEWPLCA)_BLAS: $(SRCSNEWPLCA)
-	$(CC) -O3 -DADD_ -o $(EXECTNEWPLCA)_BLAS $(CPPFILESNEWPLCA) $(BLASLIB) $(BLASHEADER)
+$(EXECTPLCABLAS): $(SRCSPLCABLAS)
+	$(CC) -O3 -DADD_ -o $(EXECTPLCABLAS) $(CPPFILESPLCABLAS) $(BLASLIB) $(BLASHEADER)
 
 $(EXECTCOMP): $(SRCSCOMP)
 	$(CC) -O2 -o $(EXECTCOMP) $(CPPFILESCOMP)

@@ -38,4 +38,4 @@ The intermediate results, such like results of plca or STFT, can be got with the
 
   2 If you don't have a native blas library, then you need to install BLAS and CBLAS. You just need to go to these two directories and type "make all". And you can use the configuration for BLASLIB and BLASHEADER in the provided Makefile. 
 
-You can type "make testnewplca_BLAS" to see how to compile it. Notice: if you use the non-native BLAS library, usually plca_BLAS is slower than plca, that's why it's not included in the audio_analyzer library.
+You can type "make testnewplca_BLAS" to see how to compile it. Notice: if you use the non-native BLAS library, plca_BLAS is not surely faster than plca, that's why it's not included in the audio_analyzer library.
