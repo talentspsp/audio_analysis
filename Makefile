@@ -29,10 +29,12 @@ BLASHEADER = -ICBLAS/src -ICBLAS/include
 ALLHEADER = audio_analyzer.h matfile.h plca2d.h LambertWs.h comp_weight.h math_util.h wav_sep.h STFT.h fastmath.h plca.h
 ALLCPP = plca.cpp LambertWs.cpp wav_sep.cpp STFT.cpp plca2d_wrapper.cpp audio_analyzer.cpp comp_weight.cpp matfile.cpp
 WAVPROCCPP = exit_msg_stdio.cpp wav_in.cpp wav_out.cpp
-all: $(ALLHEADER) $(ALLCPP) $(LIB) $(LIBWAV)
+all: $(ALLHEADER) $(ALLCPP)
 	cd $(LIBDIR); make; cd ..;
 	cd $(LIBWAVDIR); $(CC) -O2 -c $(WAVPROCCPP); ar -cvr libwavproc.a *.o; cd ..;
-	$(CC) -O2 -c $(ALLCPP) -L$(LIBDIR) $(LIBFLAG) -L$(LIBWAVDIR) $(LIBFLAGWAV) $(HEADERPATH)
+	$(CC) -O2 -c $(ALLCPP) $(HEADERPATH)
+	ar -x $(LIB);
+	ar -x $(LIBWAV);
 	ar -cvr libaudio_analyzer.a *.o
 
 $(EXECEP): $(SRCSEP) $(LIB) $(LIBWAV)
