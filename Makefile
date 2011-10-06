@@ -13,8 +13,8 @@ SRCSNEWPLCA = fastmath.h fastmath.cpp LambertWs.h LambertWs.cpp plca.h plca_BLAS
 CPPFILESNEWPLCA = LambertWs.cpp plca_BLAS.cpp testnewplca.cpp matfile.cpp
 SRCSCOMP = testcompweight.cpp comp_weight.cpp matfile.cpp math_util.h comp_weight.h matfile.h
 CPPFILESCOMP = testcompweight.cpp  comp_weight.cpp matfile.cpp
-SRCSAA = STFT.cpp math_util.h LambertWs.h plca2d.cpp LambertWs.cpp plca2d.h comp_weight.cpp matfile.cpp comp_weight.h matfile.h testaudioanalyzer.cpp STFT.h audio_analyzer.h audio_analyzer.cpp
-CPPFILESAA = STFT.cpp plca2d.cpp LambertWs.cpp comp_weight.cpp matfile.cpp testaudioanalyzer.cpp audio_analyzer.cpp
+SRCSAA = STFT.cpp math_util.h LambertWs.h plca2d_wrapper.cpp fastmath.h fastmath.cpp LambertWs.cpp plca2d.h comp_weight.cpp matfile.cpp comp_weight.h matfile.h testaudioanalyzer.cpp STFT.h audio_analyzer.h audio_analyzer.cpp plca.h plca.cpp
+CPPFILESAA = STFT.cpp plca2d_wrapper.cpp LambertWs.cpp comp_weight.cpp matfile.cpp testaudioanalyzer.cpp audio_analyzer.cpp plca.cpp
 SRCSEP = STFT.cpp math_util.h LambertWs.h plca2d.cpp LambertWs.cpp plca2d.h comp_weight.cpp matfile.cpp comp_weight.h matfile.h STFT.h audio_analyzer.h audio_analyzer.cpp extractplca.cpp
 CPPFILESEP = STFT.cpp plca2d.cpp LambertWs.cpp comp_weight.cpp matfile.cpp audio_analyzer.cpp extractplca.cpp
 LIBDIR = ./spuc
@@ -26,6 +26,14 @@ LIBFLAGWAV = -lwavproc
 HEADERPATH = -I./spuc -I./spuc/generic
 BLASLIB = ./CBLAS/lib/cblas_DARWIN.a ./BLAS/blas_DARWIN.a
 BLASHEADER = -ICBLAS/src -ICBLAS/include
+ALLHEADER = audio_analyzer.h matfile.h plca2d.h LambertWs.h comp_weight.h math_util.h wav_sep.h STFT.h fastmath.h plca.h
+ALLCPP = plca.cpp LambertWs.cpp wav_sep.cpp STFT.cpp plca2d_wrapper.cpp audio_analyzer.cpp comp_weight.cpp matfile.cpp
+WAVPROCCPP = exit_msg_stdio.cpp wav_in.cpp wav_out.cpp
+all: $(ALLHEADER) $(ALLCPP) $(LIB) $(LIBWAV)
+	cd $(LIBDIR); make; cd ..;
+	cd $(LIBWAVDIR); $(CC) -O2 -c $(WAVPROCCPP); ar -cvr libwavproc.a *.o; cd ..;
+	$(CC) -O2 -c $(ALLCPP) -L$(LIBDIR) $(LIBFLAG) -L$(LIBWAVDIR) $(LIBFLAGWAV) $(HEADERPATH)
+	ar -cvr libaudio_analyzer.a *.o
 
 $(EXECEP): $(SRCSEP) $(LIB) $(LIBWAV)
 	  $(CC) -O2 -o $(EXECEP) $(CPPFILESEP) -L$(LIBDIR) $(LIBFLAG) -L$(LIBWAVDIR) $(LIBFLAGWAV) $(HEADERPATH)
@@ -63,7 +71,7 @@ compare_matmult: compare_matmult.cpp
 clean:
 	rm -f *~
 	rm -f *#
-	rm -f ./$(EXECTSTFT)
-	rm -f ./$(EXECTPLCA)
-	rm -f ./$(EXECTCOMP)
-	rm -f ./$(EXECTAA)
+	rm -f ./*.o
+	rm -f ./libaudio_analyzer.a
+	cd $(LIBDIR); make clean; cd ..;
+	cd $(LIBWAVDIR); rm -f *.o; rm -f libwavproc.a; cd ..;

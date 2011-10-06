@@ -15,7 +15,7 @@ int main()
   char filename4[]="testdata/Intermission.wav";*/
   //set the parameters
   A.set_fft_param(1024,1024,256);
-  A.set_sparsez(0.01);
+  A.set_sparsez(0.2);
   A.set_thd_db(-1000);
   A.set_thd_pz(0);
   A.set_numcomp_per_seg(10);
@@ -83,6 +83,8 @@ int main()
   cout<<"current label is "<<A.get_curr_label()<<endl;
   cout<<"file1's number of components are"<<A.get_numcomp_all()<<endl;
   // printmat(A.get_pfz(),A.get_numcomp(),A.get_lenf());
+  mat2bin("testdata/80s_W.bin",A.get_numcomp_all(),A.get_lenf(),A.get_pfz());
+  mat2bin("testdata/80s_H.bin",A.get_lent(),A.get_numcomp_all(),A.get_ptz());
   mat2bin("testdata/80s_Z.bin",A.get_numseg(),A.get_numcomp_per_seg(),A.get_pz());
   /* A.add_comps();
   cout<<"add comps finished!"<<endl;
