@@ -1,19 +1,32 @@
-#include "plca.h"
+#include "plcadirichlet.h"
 #include "fastmath.h"
 #include "LambertWs.h"
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
+#include "CBLAS/include/cblas.h"
 using namespace std;
 
 FMmatrix<double> lambert_compute_with_offset(const FMmatrix<double>& in_omeg, double z, double lam_offset);
 
-void plca(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in_sz, const FMmatrix<double>& in_sw, const FMmatrix<double>& in_sh, const FMmatrix<double>& in_z, const FMmatrix<double>& in_w, const FMmatrix<double>& in_h, const FMmatrix<bool>& lw, const FMmatrix<bool>& lh, FMmatrix<double>& out_w,  FMmatrix<double>& out_h,  FMmatrix<double>& out_z)
+void plcadirichlet_BLAS(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in_sz, const FMmatrix<double>& in_sw, const FMmatrix<double>& in_sh, const FMmatrix<double>& in_z, const FMmatrix<double>& in_w, const FMmatrix<double>& in_h, const FMmatrix<bool>& lw, const FMmatrix<bool>& lh, FMmatrix<double>& out_w,  FMmatrix<double>& out_h,  FMmatrix<double>& out_z, double dc)
 {
   srand(time(0));
   int M=x.numrow(), N=x.numcol();
   int i,j;
   //initialize
+  if(dc<0.001)
+    dc=0.001;
+  dc=-dc;
+  /* FMmatrix<bool> dw(lw);
+  FMmatrix<bool> dh(lh);
+  //bool empflag=true; // if all the elements of lw is true, then dw=lw, otherwith, dw=allw-lw
+  for(i=0;i<lw.numel();i++)
+    dw(i)=!lw(i);
+  for(i=0;i<lh.numel();i++)
+  dh(i)= !lh(i);*/
+    
+
   out_w.reset(M,K);
   if(in_w.isempty())
     out_w.randset();
@@ -95,7 +108,7 @@ void plca(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in
 
   FMmatrix<double> zh(K,N);
   FMmatrix<double> R;
-  FMmatrix<double> tempprod, tempcol, temprow;
+  FMmatrix<double> tempprod, tempcol, tempcol2, temprow,temprow2;
   FMmatrix<double> nw,nh;
   int it;
   bool islw=false, islh=false;
@@ -116,43 +129,49 @@ void plca(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in
 	islh=true;
 	break;
       }
-  
+  double kappa;
   for(it=0;it<iter;it++)
     {
+      kappa=exp(dc*(it+1));
       //zh=diag(z)*h
       mat_ewmult_vec(zh, out_h, out_z.transp());
       //tempprod=w*zh
-      mat_mult(tempprod, out_w, zh);
+      // mat_mult(tempprod, out_w, zh);
+      tempprod.reset(M,N);
+      cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, out_w.numrow(), zh.numcol(), out_w.numcol(), 1.0, out_w.getdata(), out_w.numcol(), zh.getdata(), zh.numcol(), 0.0,tempprod.getdata(), zh.numcol());
       //R=x./(w*zh)
       ew_div(R, x, tempprod);
       
       //M-step
-      if(islw)
-	{
+      //  if(islw)
+      //	{
 	  // nw=w.*(R*zh')
-	  mat_mult(tempprod, R, zh.transp());
+      // mat_mult(tempprod, R, zh.transp());
+      tempprod.reset(M,K);
+      cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasTrans, R.numrow(), zh.numrow(), R.numcol(), 1.0, R.getdata(), R.numcol(), zh.getdata(), zh.numcol(), 0.0,tempprod.getdata(), zh.numrow());
 	  ew_mult(nw, out_w, tempprod);
-	}
-      if(islh)
-	{
+	  //}
+	  // if(islh)
+	  //{
 	  //nh = zh .* (w'*R);
-	  mat_mult(tempprod, out_w.transp(), R);
+	  // mat_mult(tempprod, out_w.transp(), R);
+	  tempprod.reset(K,N);
+	  cblas_dgemm(CblasRowMajor, CblasTrans, CblasNoTrans, out_w.numcol(), R.numcol(), R.numrow(), 1.0, out_w.getdata(), out_w.numcol(), R.getdata(), R.numcol(), 0.0,tempprod.getdata(), R.numcol());
 	  ew_mult(nh,zh,tempprod);
-	}
+	  //	}
 
       if(islw)
 	out_z=sum(nw,1);
-      else if(islh)
+      else //if(islh)
 	{
 	  out_z=sum(nh,2);
 	  out_z=out_z.transp();
 	}
-      
       //Impose sparsity constraints
       int tl;
       if(isws)
 	for(tl=0;tl<lw.numel();tl++)
-	  if(lw(tl) && sw(it,tl) != 0)
+	  if(sw(it,tl) != 0)
 	    {
 	      nw.setcol(tl,lambert_compute_with_offset(nw.getcol(tl), sw(it,tl), 0));
 	      //out_w.setcol(tl, tempcol);
@@ -160,7 +179,7 @@ void plca(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in
       
       if(ishs)
 	for(tl=0;tl<lh.numel();tl++)
-	  if(lh(tl) && sh(it,tl) != 0)
+	  if(sh(it,tl) != 0)
 	    {
 	      nh.setrow(tl,lambert_compute_with_offset(nh.getrow(tl), sh(it,tl), 0));
 	      //out_h.setrow(tl,temprow);
@@ -173,21 +192,35 @@ void plca(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in
       scalar_mult_mat(out_z,1/tempsum(0),out_z); 
       
       for(tl=0;tl<lw.numel();tl++)
-	if(lw(tl))
-	  {
-	    tempcol=nw.getcol(tl);
-	    tempcol.avoidzero();
-	    tempsum=sum(tempcol,0);
-	    scalar_mult_mat(tempcol,1/tempsum(0),tempcol);
-	    out_w.setcol(tl, tempcol);
-	  }
+	{
+	  tempcol=nw.getcol(tl);
+	  tempcol.avoidzero();
+	  tempsum=sum(tempcol,0);
+	  scalar_mult_mat(tempcol,1/tempsum(0),tempcol);
+	  if(!lw(tl))
+	    {
+	      tempcol2=out_w.getcol(tl);
+	      scalar_mult_mat(tempcol2, 1-kappa,tempcol2);
+	      scalar_mult_mat(tempcol,kappa,tempcol);
+	      mat_add(tempcol,tempcol,tempcol2);
+	      tempcol.avoidzero();
+	    }
+	  out_w.setcol(tl, tempcol);
+	}
       for(tl=0;tl<lh.numel();tl++)
-	if(lh(tl))
 	  {
 	    temprow=nh.getrow(tl);
 	    temprow.avoidzero();
 	    tempsum=sum(temprow,0);
 	    scalar_mult_mat(temprow,1/tempsum(0),temprow);
+	    if(!lh(tl))
+	      {
+		temprow2=out_h.getrow(tl);
+		scalar_mult_mat(temprow2, 1-kappa,temprow2);
+		scalar_mult_mat(temprow,kappa,temprow);
+		mat_add(temprow,temprow,temprow2);
+		temprow.avoidzero();
+	      }
 	    out_h.setrow(tl,temprow);
 	  }      
     }  

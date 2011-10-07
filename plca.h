@@ -1,6 +1,6 @@
 #ifndef _PLCA_H
 #define _PLCA_H
-#include "fastmath.h" //it's still not fast enough, will use lapack instead of it
+#include "fastmath.h"
 
 /*
   This function implement plca algorithm

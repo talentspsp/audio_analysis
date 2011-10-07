@@ -5,6 +5,8 @@ EXECTSTFT = teststft
 EXECTPLCA = testplca
 EXECTNEWPLCA = testnewplca
 EXECTPLCABLAS = testplcablas
+EXECTPLCADIRICHLET = testplcadirichlet
+EXECTPLCADIRICHLETBLAS = testplcadirichletblas
 EXECTCOMP = testcompweight
 SRCSSTFT = teststft.cpp STFT.cpp math_util.h matfile.h matfile.cpp
 CPPFILESSTFT = teststft.cpp STFT.cpp matfile.cpp
@@ -12,6 +14,10 @@ SRCSPLCA = math_util.h LambertWs.h plca2d.cpp LambertWs.cpp plca2d.h testplca.cp
 CPPFILESPLCA = LambertWs.cpp plca2d.cpp testplca.cpp matfile.cpp LambertWnew.cpp
 SRCSNEWPLCA = fastmath.h fastmath.cpp LambertWs.h LambertWs.cpp plca.h testnewplca.cpp matfile.h matfile.cpp plca.cpp
 CPPFILESNEWPLCA = LambertWs.cpp testnewplca.cpp matfile.cpp plca.cpp
+SRCSPLCADIRICHLET = fastmath.h fastmath.cpp LambertWs.h LambertWs.cpp plcadirichlet.h testplcadirichlet.cpp matfile.h matfile.cpp plcadirichlet.cpp
+CPPFILESPLCADIRICHLET = LambertWs.cpp testplcadirichlet.cpp matfile.cpp plcadirichlet.cpp
+SRCSPLCADIRICHLETBLAS = fastmath.h fastmath.cpp LambertWs.h LambertWs.cpp plcadirichlet.h testplcadirichletblas.cpp matfile.h matfile.cpp plcadirichlet_BLAS.cpp
+CPPFILESPLCADIRICHLETBLAS = LambertWs.cpp testplcadirichletblas.cpp matfile.cpp plcadirichlet_BLAS.cpp
 SRCSPLCABLAS = fastmath.h fastmath.cpp LambertWs.h LambertWs.cpp plca.h testplcablas.cpp matfile.h matfile.cpp plca_BLAS.cpp
 CPPFILESPLCABLAS = LambertWs.cpp testplcablas.cpp matfile.cpp plca_BLAS.cpp
 SRCSCOMP = testcompweight.cpp comp_weight.cpp matfile.cpp math_util.h comp_weight.h matfile.h
@@ -29,8 +35,8 @@ LIBFLAGWAV = -lwavproc
 HEADERPATH = -I./spuc -I./spuc/generic
 BLASLIB = ./CBLAS/lib/cblas_DARWIN.a ./BLAS/blas_DARWIN.a
 BLASHEADER = -ICBLAS/src -ICBLAS/include
-ALLHEADER = audio_analyzer.h matfile.h plca2d.h LambertWs.h comp_weight.h math_util.h wav_sep.h STFT.h fastmath.h plca.h
-ALLCPP = plca.cpp LambertWs.cpp wav_sep.cpp STFT.cpp plca2d_wrapper.cpp audio_analyzer.cpp comp_weight.cpp matfile.cpp
+ALLHEADER = audio_analyzer.h matfile.h plca2d.h LambertWs.h comp_weight.h math_util.h wav_sep.h STFT.h fastmath.h plca.h plcadirichlet.h
+ALLCPP = plca.cpp LambertWs.cpp wav_sep.cpp STFT.cpp plca2d_wrapper.cpp audio_analyzer.cpp comp_weight.cpp matfile.cpp plcadirichlet.cpp
 WAVPROCCPP = exit_msg_stdio.cpp wav_in.cpp wav_out.cpp
 all: $(ALLHEADER) $(ALLCPP)
 	cd $(LIBDIR); make; cd ..;
@@ -39,6 +45,7 @@ all: $(ALLHEADER) $(ALLCPP)
 	ar -x $(LIB);
 	ar -x $(LIBWAV);
 	ar -cvr libaudio_analyzer.a *.o
+	$(CC) -O2 -o $(EXECTAA) $(CPPFILESAA) -L. -laudio_analyzer $(HEADERPATH)
 
 $(EXECEP): $(SRCSEP) $(LIB) $(LIBWAV)
 	  $(CC) -O2 -o $(EXECEP) $(CPPFILESEP) -L$(LIBDIR) $(LIBFLAG) -L$(LIBWAVDIR) $(LIBFLAGWAV) $(HEADERPATH)
@@ -62,9 +69,13 @@ $(EXECTPLCA)_debug: $(SRCSPLCA)
 
 $(EXECTNEWPLCA): $(SRCSNEWPLCA)
 	$(CC) -O2 -o $(EXECTNEWPLCA) $(CPPFILESNEWPLCA)
+$(EXECTPLCADIRICHLET): $(SRCSPLCADIRICHLET)
+	$(CC) -O2 -o $(EXECTPLCADIRICHLET) $(CPPFILESPLCADIRICHLET)
 
 $(EXECTPLCABLAS): $(SRCSPLCABLAS)
 	$(CC) -O3 -DADD_ -o $(EXECTPLCABLAS) $(CPPFILESPLCABLAS) $(BLASLIB) $(BLASHEADER)
+$(EXECTPLCADIRICHLETBLAS): $(SRCSPLCADIRICHLETBLAS)
+	$(CC) -O3 -DADD_ -o $(EXECTPLCADIRICHLETBLAS) $(CPPFILESPLCADIRICHLETBLAS) $(BLASLIB) $(BLASHEADER)
 
 $(EXECTCOMP): $(SRCSCOMP)
 	$(CC) -O2 -o $(EXECTCOMP) $(CPPFILESCOMP)
@@ -78,5 +89,6 @@ clean:
 	rm -f *#
 	rm -f ./*.o
 	rm -f ./libaudio_analyzer.a
+	rm -f ./$(EXECTAA)
 	cd $(LIBDIR); make clean; cd ..;
 	cd $(LIBWAVDIR); rm -f *.o; rm -f libwavproc.a; cd ..;

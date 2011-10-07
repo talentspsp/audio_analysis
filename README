@@ -1,6 +1,6 @@
 This project implements plca-based sound classification system.
 ===================================================================================================================================================
-To make the library, type "make", a static library libaudio_analyzer.a will be made.
+To make the library, type "make", a static library libaudio_analyzer.a and a test example called testaa will be made.
 
 NOTICE:
 When you compile your code with this library, you also need to add ./spuc and ./spuc/generic to the header searching path. For example:
@@ -13,6 +13,8 @@ plca2d.cpp/h: plca2d algorithm, the output are P(f|z), P(z), Pt(z). IT'S OUT OF 
 plca2d_wrapper.cpp: It's a wrapper which has the same interface as plca2d.cpp, but it will call plca instead.
 plca.cpp/h: plca2d algorithm.
 plca_BLAS.cpp: it is similar to plca and has the same interface as plca, just it uses BLAS routines to do the matrix multiplication. IT'S NOT INCLUDED IN THE LIBRARY NOW. If you want to use it, see the instruction below.(*)
+plcadirichlet.cpp/h: plca algorithm with adaptive dirichlet process
+plcadirichlet_BLAS.cpp: With BLAS routines
 LambertW*.cpp/h: Lambert function used by plca.
 comp_weight.cpp/h: calculate the weights of different sources in a given distribution
 wav_sep.cpp/h: get a segment from the whole wav file

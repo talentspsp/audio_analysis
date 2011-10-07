@@ -150,7 +150,10 @@ void plca_BLAS(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double
       if(islw)
 	out_z=sum(nw,1);
       else if(islh)
-	out_z=sum(nh,2);
+	{
+	  out_z=sum(nh,2);
+	  out_z=out_z.transp();
+	}
       
       //Impose sparsity constraints
       int tl;
