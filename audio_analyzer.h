@@ -2,6 +2,7 @@
 #define _AUDIO_ANALYZER_H
 #include "spuc/generic/complex.h"
 #include <vector>
+#include "fastmath.h"
 
 using namespace SPUC;
 using namespace std;
@@ -41,6 +42,9 @@ public:
   bool get_comp_weight();
   //predict the class of the input data. compare the weight of different sources, and classify the data with the class with the highest weight.set label_pred, and also return it
   int pred_max_weight();
+
+  //extract H functions with plca or dirichlet plca with given global W
+  bool extract_adapted_time_functions();
 
   //this group of functions used to get and set parameters
   complex<double>* get_data() {return data;}
@@ -100,6 +104,19 @@ public:
   double** get_ptzs() {return ptzs;}
   void set_ptzs(double** p) {ptzs=p;}
   double* get_class_prob() {return class_prob;}
+
+  void set_dirich(int d) {dirich=d;}
+  int get_dirich() {return dirich;}
+
+  void set_dp(double in_dp) {dp=in_dp;}
+  double get_dp() {return dp;}
+
+  void set_esz(double e) {esz=e;}
+  double get_esz() {return esz;}
+
+  FMmatrix<double> get_ew() {return estimated_w;}
+  FMmatrix<double> get_eh() {return estimated_h;}
+  FMmatrix<double> get_ez() {return estimated_z;}
   
 private:
   complex<double>* data;
@@ -114,8 +131,12 @@ private:
   int curr_label;
   int label_pred;
   double sparse_z;
+  double esz; //sparseness prior used in extract_adapted_time_functions, default: 0.2
   double thd_db; //threshold on db
   double thd_pz; //threshold on pz
+  int dirich; //if use dirichlet plca in extract_adapted_time_functions,0: use plca 1: use dirichlet plca; default: 1
+  double dp;//dirichlet prior, default: 0.01
+
   size_t numclass;
   size_t numcomp_per_seg; //number of components used in plca
   size_t numcomp_all; //number of components from all the segments
@@ -142,6 +163,9 @@ private:
   double** ptzs;
   double* class_prob;
   int opt_get_cw;
+  FMmatrix<double> estimated_w;
+  FMmatrix<double> estimated_h;
+  FMmatrix<double> estimated_z;
 };
 
 

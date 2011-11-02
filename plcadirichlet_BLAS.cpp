@@ -1,13 +1,14 @@
 #include "plcadirichlet.h"
 #include "fastmath.h"
 #include "LambertWs.h"
+#include "lambert_compute_with_offset.h"
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
 #include "CBLAS/include/cblas.h"
 using namespace std;
 
-FMmatrix<double> lambert_compute_with_offset(const FMmatrix<double>& in_omeg, double z, double lam_offset);
+//FMmatrix<double> lambert_compute_with_offset(const FMmatrix<double>& in_omeg, double z, double lam_offset);
 
 void plcadirichlet_BLAS(const FMmatrix<double>& x, int K, int iter, const FMmatrix<double>& in_sz, const FMmatrix<double>& in_sw, const FMmatrix<double>& in_sh, const FMmatrix<double>& in_z, const FMmatrix<double>& in_w, const FMmatrix<double>& in_h, const FMmatrix<bool>& lw, const FMmatrix<bool>& lh, FMmatrix<double>& out_w,  FMmatrix<double>& out_h,  FMmatrix<double>& out_z, double dc)
 {
@@ -227,7 +228,7 @@ void plcadirichlet_BLAS(const FMmatrix<double>& x, int K, int iter, const FMmatr
 }
 
 
-FMmatrix<double> lambert_compute_with_offset(const FMmatrix<double>& in_omeg, double z, double lam_offset)
+/*FMmatrix<double> lambert_compute_with_offset(const FMmatrix<double>& in_omeg, double z, double lam_offset)
 {
   if(in_omeg.numrow() != 1 && in_omeg.numcol() != 1)
     throw runtime_error("In lambert_compute_with_offset: omeg should be a vector!");
@@ -304,3 +305,4 @@ FMmatrix<double> lambert_compute_with_offset(const FMmatrix<double>& in_omeg, do
     }
   return thet;
 }
+*/

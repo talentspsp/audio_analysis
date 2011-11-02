@@ -64,8 +64,8 @@ template <class T>
 class FMmatrix
 {
 public:
- FMmatrix(): row(0), col(0), data(0), capacity(0) {}
- FMmatrix(int in_row, int in_col): row(in_row), col(in_col), capacity(in_row*in_col) {data=new T[row*col];}
+  FMmatrix(): row(0), col(0), data(0), capacity(0) {}
+  FMmatrix(int in_row, int in_col): row(in_row), col(in_col), capacity(in_row*in_col) {data=new T[row*col];}
   inline FMmatrix(int in_row, int in_col, T val);
   inline FMmatrix(const FMmatrix& rhs); //deep copy
   inline FMmatrix<T>& operator= (const FMmatrix& rhs); //deep copy
@@ -95,7 +95,7 @@ public:
   inline void setcol(int colind, const FMmatrix<T>& val);
   inline void setdata_cpy(int in_row, int in_col, const T* in_data); //this function will copy the data in in_data to the object
   inline void setdata_ncpy(int in_row, int in_col, T* in_data); //this funciont will set this->data=in_data;
-
+  inline void setdata_zero(); //this function will set this->data=0, without free the memory! so be careful when using it!
 
   friend void scalar_mult_mat<T>(FMmatrix<T>& result, T sc, const FMmatrix<T>& mat);
   friend void scalar_add_mat<T>(FMmatrix<T>& result, T sc, const FMmatrix<T>& mat);

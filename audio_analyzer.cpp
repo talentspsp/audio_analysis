@@ -2,12 +2,15 @@
 #include "STFT.h"
 #include "wavproc/wav_in.h"
 #include "plca2d.h"
+//#include "plca.h"
 #include <stdexcept>
 #include <cmath>
 #include <iostream>
 #include "comp_weight.h"
 #include "math_util.h"
 #include <cstring> //for memcpy
+#include "plcadirichlet.h"
+#include "fastmath.h"
 using namespace std;
 
 audio_analyzer::audio_analyzer(size_t nclass)
@@ -47,6 +50,9 @@ audio_analyzer::audio_analyzer(size_t nclass)
   lent_gt_thd=0;
   class_prob=NULL;
   numcomp_all=0;
+  dirich=1;
+  dp=0.01;
+  esz=0.2;
 }
 
 int audio_analyzer::readindata(const char* filename, int label)
@@ -336,4 +342,57 @@ int audio_analyzer::pred_max_weight()
   max(class_prob,numclass,tmplb);
   label_pred=tmplb;
   return label_pred;
+}
+
+bool audio_analyzer::extract_adapted_time_functions()
+{
+  int i,j,z, ncomps=0;
+  for(z=0;z<numclass;z++)
+    ncomps+=extracted_comps[z].row;
+  FMmatrix<double> globalw(ncomps,lenf);
+
+  //copy the extracted W components into globalw
+  i=0; 
+  for(z=0;z<numclass;z++)
+    {
+      j=0;
+      for(j=0;j<extracted_comps[z].row*extracted_comps[z].col;j++)
+	globalw(i++)=extracted_comps[z].data[j];
+    }
+  /*
+    Notice: because in globalw and also the result of stft, each row is a distribution in frequecy domain. but for dirichlet plca, each column of input w should be a distribution in frequency domain, so here we input globalw as h, and the output of w as our h functions 
+   */
+  int iter=100;
+  FMmatrix<double> in_sz(1,1,esz);
+  FMmatrix<double> in_sw(1,1,0);
+  FMmatrix<double> in_sh(1,1,0);
+  FMmatrix<double> in_z; //empty
+  //FMmatrix<double> in_h; here in_h is globalw
+  FMmatrix<double> in_w; //empty
+  FMmatrix<bool> lw(1,ncomps,true);
+  FMmatrix<bool> lh(1,ncomps,false);
+  estimated_w.clear();
+  estimated_h.clear();
+  estimated_z.clear();
+  /* FMmatrix<double> out_w;
+  FMmatrix<double> out_h;
+  FMmatrix<double> out_z;*/
+  FMmatrix<double> x;
+  x.setdata_ncpy(lent_gt_thd,lenf,STFT_double_gt_thd);
+  switch(dirich)
+    {
+    case 0:
+      // plca(x, ncomps,iter, in_sz, in_sw,  in_sh, in_z, in_w, globalw, lw, lh,estimated_h, estimated_w,estimated_z);
+      break;
+    case 1:
+      plcadirichlet(x,ncomps,iter, in_sz, in_sw, in_sh, in_z, in_w, globalw,lw, lh, estimated_h,estimated_w,estimated_z,dp);
+      break;
+    default:
+      cerr<<"No option "<<dirich<<" for dirich!"<<endl;
+      return false;
+    }
+
+  x.setdata_zero();
+
+  return true;
 }

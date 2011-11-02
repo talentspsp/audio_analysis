@@ -104,3 +104,20 @@ double* bin2mat(const char* filename, size_t* row, size_t* col)
   in.close();
   return data;
 }
+
+bool mat2bin(const char* filename, const FMmatrix<double>& T)
+{
+  ofstream ou(filename, ios::out | ios::binary);
+  if(!ou)
+    {
+      cerr<<"cannot open file "<<filename<<endl;
+      return false;
+    }
+  size_t row=(size_t)(T.numrow());
+  size_t col=(size_t)(T.numcol());
+  ou.write((char*)&row, sizeof(size_t));
+  ou.write((char*)&col, sizeof(size_t));
+  ou.write((char*)(T.getdata()),row*col*sizeof(size_t));
+  ou.close();
+  return true;
+}

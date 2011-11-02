@@ -1160,3 +1160,12 @@ inline void FMmatrix<T>::setdata_ncpy(int in_row, int in_col, T* in_data)
   col=in_col;
   capacity=row*col;
 }
+
+template <class T>
+inline void FMmatrix<T>::setdata_zero()
+{
+  row=0;
+  col=0;
+  capacity=0;
+  data=0;
+}

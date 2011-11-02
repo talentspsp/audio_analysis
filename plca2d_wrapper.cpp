@@ -9,7 +9,7 @@ bool plca2d(double* data, size_t lenf, size_t lent, size_t K, size_t max_iter, d
 {
   FMmatrix<double> x;
   x.setdata_cpy(lent, lenf,data);
-  x=x.transp();
+  // x=x.transp();
   FMmatrix<double> in_sz(1,1,sz);
   FMmatrix<double> in_sw(1,1,0);
   FMmatrix<double> in_sh(1,1,0);
@@ -26,12 +26,21 @@ bool plca2d(double* data, size_t lenf, size_t lent, size_t K, size_t max_iter, d
   double* pfz=new double[K*lenf];//z row, f column
   double* pz=new double[K];
   int i,j;
-  for(i=0;i<lent;i++)
+  /*  for(i=0;i<lent;i++)
     for(j=0;j<K;j++)
 	ptz[i*K+j]=out_h(j,i);
   for(i=0;i<K;i++)
     for(j=0;j<lenf;j++)
       pfz[i*lenf+j]=out_w(j,i);
+  
+  for(i=0;i<K;i++)
+  pz[i]=out_z(i);*/
+  for(i=0;i<lent;i++)
+    for(j=0;j<K;j++)
+      ptz[i*K+j]=out_w(i,j);
+  for(i=0;i<K;i++)
+    for(j=0;j<lenf;j++)
+      pfz[i*lenf+j]=out_h(i,j);
   
   for(i=0;i<K;i++)
     pz[i]=out_z(i);

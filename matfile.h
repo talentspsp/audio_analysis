@@ -13,6 +13,7 @@
  */
 #include <cstdlib>
 #include <iostream>
+#include "fastmath.h"
 using namespace std;
 
 template <class T>
@@ -36,5 +37,6 @@ double* asc2mat(const char* filename, size_t* row, size_t* col);
 bool mat2bin(const char* filename, size_t row, size_t col, double* data);
 double* bin2mat(const char* filename, size_t* row, size_t* col);
 
+bool mat2bin(const char* filename, const FMmatrix<double>& T);
 
 #endif
